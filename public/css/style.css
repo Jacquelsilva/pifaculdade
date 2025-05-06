@@ -1,0 +1,1090 @@
+/* CSS da tela de Login */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: auto;
+
+  }
+
+  .site-footer {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .site-footer .footer-top {
+    padding: 20px 0 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .site-footer .footer-copy {
+    margin: 0 0 10px;
+  }
+  
+  .site-footer .footer-social a {
+    display: inline-block;
+    margin: 0 8px;
+    color: #000000;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+  }
+  .site-footer .footer-social a:hover {
+    color: #000000;
+  }
+  
+  .site-footer .footer-bottom {
+    padding: 10px 0 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgb(0, 0, 0);
+  }
+  
+  
+  
+  .container {
+    display: flex;
+    height: 100vh;
+  
+  }
+  
+  .left-side, .right-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  .left-side {
+ 
+    padding: 0;
+    overflow: hidden;    
+   
+  }
+  
+  .left-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
+  
+  .right-side {
+    position: relative;
+  }
+  
+  .text-container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .text-container h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .text-container p {
+    font-size: 16px;
+  }
+  
+  .right-side img {
+    width: 100%;
+    height: 100%;
+    
+    object-fit: cover;
+   
+    
+  }
+  
+  .form-box {
+    width: 80%;
+    max-width: 350px;
+    text-align: center;
+  }
+  
+  .form-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .form-box form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-box form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #033B96;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  .form-box form button:hover {
+    background-color: #033B96;
+  }
+  
+  .google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+   
+  }
+  .google-btn i {
+    margin-right: 8px;
+  }
+   
+  .register-link {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .register-link a {
+    color: #033B96;
+    text-decoration: none;
+  }
+  
+
+/* CSS inicio  */
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: auto;
+  background-color: #ffffff; /* Cor de fundo suave */
+}
+
+/* Barra de Navegação */
+/* Navbar compacta igual ao footer */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;                   /* altura fixa */
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;            /* centra verticalmente */
+  justify-content: space-between; /* espaça logo e links */
+  padding: 0 20px;                /* só padding horizontal */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  text-transform: uppercase;
+}
+
+.navbar .logo img {
+  height: 40px;  /* logo menor para caber na navbar */
+  width: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  font-size: 15px;
+  padding: 5px 20px;   /* padding mais enxuto */
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  line-height: 1;       /* sem espaçamento extra */
+}
+
+.nav-links a:hover {
+  background-color: #0271D4;
+  color: #fff;
+}
+
+/* garante que o conteúdo não fique por baixo da navbar */
+body {
+  padding-top: 60px;
+}
+
+
+body {
+  padding-top: 200px; /* Dá um espaçamento para a navbar */
+}
+
+/* Seção Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 20px 40px; /* Ajuste no padding para não cobrir o conteúdo */
+  background-color: #033B96;
+  color: white;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-text h1 {
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.hero-text p {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+
+.hero-img img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: #0271D4;
+  color: white;
+  padding: 12px 30px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0059b3;
+}
+
+/* Seção de Benefícios */
+.marketing {
+  background-color: #ffffff;
+  padding: 50px 20px;
+}
+
+.marketing .container {
+  max-width: 1100px;
+  margin: 20 ;
+}
+
+.marketing h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #033B96;
+}
+.benefit {
+  margin: 20px;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.947);
+  transition: transform 0.3s ease;
+  margin-bottom: 20px; /* Adiciona espaço entre os cards */
+}
+
+.benefit:hover {
+  transform: translateY(-5px);
+}
+
+.benefit i {
+  font-size: 3rem;
+  color: #033B96;
+  margin-bottom: 20px;
+}
+
+.benefit h3 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.benefit p {
+  font-size: 1rem;
+  color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-img img {
+    max-width: 80%;
+    margin-top: 20px;
+  }
+
+  .benefits {
+    flex-direction: column;
+  }
+
+  .benefit {
+    margin-bottom: 30px;
+  }
+}
+
+/* Cadastro */
+
+
+.back-arrow {
+  top: 20px;
+  left: 100px;
+  color: var(--accent);
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+
+/* reset básico */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+
+.register-wrapper {
+  display: flex;
+  justify-content: center;    /* centraliza horizontalmente */
+  align-items: center;        /* centraliza verticalmente */
+  min-height: calc(100vh - 100px); /* altura total da janela menos o footer (100px) */
+  padding: 20px;               /* evita encostar no topo e na base */
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* Caixa do formulário */
+.register-container {
+  background: #fff;
+  width: 100%;
+  max-width: 760px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+
+
+
+.register-container h1 {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+}
+
+
+.field {
+  margin-bottom: 20px;
+}
+
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}
+
+
+.field input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid #000000; /* Borda preta fixa */
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #000000;
+  outline: none;
+  background-color: #ffffff; /* Fundo branco */
+}
+
+.field input:focus {
+  background: #fff;
+  border-color: #000000; /* Garantir que a borda se mantenha preta quando o input estiver em foco */
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* Sombra de foco */
+}
+
+
+.password-field {
+  position: relative;
+}
+.password-field .toggle-password {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+
+.submit-btn {
+  display: block;
+  margin: 40px auto 0;
+  padding: 14px 60px;
+  background: #000000;
+  color: rgb(255, 255, 255);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 5Px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.948);
+  transition: transform .2s, box-shadow .2s;
+}
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgb(0, 0, 0);
+}
+
+/* Home */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #033b96;
+  color: white;
+  transition: all 0.3s;
+  position: fixed;
+  height: 100%;
+  z-index: 100;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed span {
+  display: none;
+}
+
+.sidebar.collapsed .menu-toggle i {
+  transform: rotate(180deg);
+}
+
+.menu-toggle {
+  padding: 20px;
+  cursor: pointer;
+  text-align: right;
+}
+
+.menu-toggle i {
+  transition: all 0.3s;
+  font-size: 1.5rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav li {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+
+nav ul li:hover {
+  background-color: #0056b3;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li a i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.logout {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 15px 20px;
+}
+
+.logout a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.logout i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  transition: all 0.3s;
+  margin-left: 300px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #3498db;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  height: 150px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.blue {
+  background-color: #3498db;
+}
+
+.red {
+  background-color: #e74c3c;
+}
+
+.add {
+  background-color: #2ecc71;
+  font-size: 2rem;
+}
+
+/* Estilos para mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 99;
+    background: #046a00;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .sidebar.collapsed .menu-toggle {
+    left: 20px;
+  }
+}
+a{ 
+  text-transform: uppercase;
+ }
+
+/* saiba mais*/
+
+
+.container-status {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #0057b3d5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.container-status .header {
+  background-color: #0057b397;
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+
+ul.status-list {
+  list-style: disc inside;
+  padding-left: 0;
+  margin-top: 30px;
+  color: #ffffff;
+  text-align: left;
+}
+
+ul.status-list > li {
+  margin-bottom: 32px;
+  color: #ffffff;
+}
+
+.pill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  max-width: 600px;
+  margin: 20px auto;
+  color: #000;
+}
+
+.pill span {
+  flex: 1;
+  text-align: center;
+}
+
+.pill.green { background-color: #b6e3c3; }
+.pill.blue { background-color: #a8d6f8; }
+.pill.red { background-color: #f8b6b6; }
+
+
+/* sair */ 
+
+.container-sair {
+  display: flex;
+  height: 100vh;
+}
+
+
+.left-side {
+  flex: 1;
+  overflow: hidden;
+}
+.left-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.right-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+}
+
+
+.back-arrow {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(255,255,255,0.8);
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.logout-box {
+  width: 90%;
+  max-width: 500px;
+  background: rgba(255,255,255,0.92);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.logout-box h2 {
+  margin-bottom: 16px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.logout-box p {
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: #555;
+}
+
+
+.logout-btn,
+.cancel-btn {
+  width: 100%;
+  padding: 16px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logout-btn {
+  background-color: #e74c3c;
+  text-decoration: none; 
+  color: #000;
+  
+}
+.logout-btn:hover {
+  background-color: #c0392b;
+  text-decoration: none;
+  
+}
+
+.cancel-btn {
+  background-color: #34495e;
+  color: #fff;
+}
+.cancel-btn:hover {
+  background-color: #140000;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* configuracao*/ 
+ 
+
+/* 2) Container de configuração (azul) */
+.config-container {
+  width: 100%;           /* Ocupa toda a largura disponível */
+  max-width: 900px;      /* Limite máximo de 900px */
+  margin: 10px auto;     /* Centraliza o container horizontalmente */
+  padding: 20px;
+  background-color: #033b96;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  height: 700px;
+}
+
+/* 3) Cabeçalho dentro do container */
+.config-container > h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;    /* Aumenta o espaço abaixo do título */
+}
+
+/* 4) Lista de opções */
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;              /* Cria um espaçamento consistente entre as opções */
+  margin-bottom: 20px;    /* Espaço extra abaixo das opções */
+}
+
+/* 5) Cada opção */
+.setting-option {
+  width: 100%;            /* Garante que cada opção ocupe toda a largura do container */
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Garante que o padding não cause overflow */
+}
+
+/* 6) Título de cada opção */
+.setting-option h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 19px;
+}
+
+/* 7) Parágrafo dentro das opções */
+.setting-option p {
+  color: #555;
+}
+
+/* 8) Botão dentro das opções */
+.setting-option button {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #033b96;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.setting-option button:hover {
+  background-color: #0056b3;
+}
+
+/* 9) Links dentro das opções */
+.setting-option a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 14px;
+}
+
+
+/*historico */
+
+
+
+.container-his {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+header {
+  display: flex;
+  align-items: right;
+  margin-bottom: 24px;
+}
+
+
+
+h1 {
+  font-size: 24px;
+}
+
+.message-card {
+  background-color: #033b96;
+    display: flex;
+  align-items: center;
+  border-radius: 16px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.message-card .icon {
+  margin-right: 12px;
+}
+
+.message-card .icon svg path {
+  fill: #ffffff;                  
+}
+
+.message-card p {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: #033b96;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+  z-index: 100;
+}
+
+/* Sidebar recolhida */
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar.collapsed span {
+  display: none;
+}
+
+.sidebar.collapsed .menu-toggle i {
+  transform: rotate(180deg);
+}
+
+.menu-toggle {
+  padding: 20px;
+  cursor: pointer;
+  text-align: right;
+}
+.menu-toggle i {
+  transition: all 0.3s;
+  font-size: 1.5rem;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav li {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sidebar nav li:hover {
+  background-color: #0056b3; /* Ajustado para consistência */
+}
+
+.sidebar nav li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar nav li a i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.sidebar .logout {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.sidebar .logout a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .logout i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+
+.dropdown-menu {
+  display: none;
+  list-style: none;
+  padding-left: 20px;
+}
+
+.dropdown-menu li {
+  font-size: 1rem;
+}
+
+.sidebar nav li:hover .dropdown-menu {
+  display: block;
+}
+
+
+a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #ffffff;
+}

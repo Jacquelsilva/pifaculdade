@@ -1,0 +1,59 @@
+@extends('layouts.main')
+
+@section('title', 'Cadastro')
+
+@section('content')
+<div class="register-wrapper">
+  <div class="register-container">
+
+    <!-- Link de retorno -->
+    <a href="{{ route('login') }}" class="back-arrow">
+      <i class="fas fa-arrow-left"></i> 
+    </a>
+
+    <h1>Criar Conta</h1>
+    <form>
+      <div class="field">
+        <label for="nome">Nome Completo:</label>
+        <input type="text" id="nome" placeholder="Insira seu nome completo" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Insira um email válido" required>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="nascimento">Data de nascimento:</label>
+          <input type="text" id="nascimento" placeholder="Exemplo: 02/09/1998" required>
+        </div>
+        <div class="field">
+          <label for="cpf">CPF:</label>
+          <input type="text" id="cpf" placeholder="Insira seu CPF válido" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field password-field">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" placeholder="Crie sua senha" required>
+          <i class="fas fa-eye toggle-password"></i>
+        </div>
+        <div class="field password-field">
+          <label for="confirma">Confirmar senha:</label>
+          <input type="password" id="confirma" placeholder="Confirme sua senha" required>
+          <i class="fas fa-eye toggle-password"></i>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="telefone">Número de telefone:</label>
+        <input type="tel" id="telefone" placeholder="Insira seu número de telefone" required>
+      </div>
+
+      <button type="submit" class="submit-btn">CADASTRAR-SE</button>
+    </form>
+  </div>
+</div>
+@endsection
