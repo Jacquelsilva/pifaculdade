@@ -3,29 +3,17 @@
 @section('title', 'Login')
 
 @section('content')
-<div class="container">
-    <div class="right-side">
-        <div class="text-container">
-            <h1>Organize suas assinaturas e contas com Recora!</h1>
-            <p>Cadastre-se agora e evite cobranças desnecessárias!</p>
-        </div>
-        <img src="{{ asset('img/wallpaper_1920x1080.png') }}" alt="Logo">
-    </div>
-    @extends('layouts.main', ['hideFooter' => true])
-
-@section('title', 'Login')
-
-@section('content')
-<div class="container">
-    <div class="right-side">
-        <div class="text-container">
-            <h1>Organize suas assinaturas e contas com Recora!</h1>
-            <p>Cadastre-se agora e evite cobranças desnecessárias!</p>
-        </div>
-        <img src="{{ asset('img/wallpaper_1920x1080.png') }}" alt="Logo">
-    </div>
-
+<div class="login-page">
+<div class="container-login">
     <div class="left-side">
+        <div class="text-container">
+            <h1>Organize suas assinaturas e contas com Recora!</h1>
+            <p>Cadastre-se agora e evite cobranças desnecessárias!</p>
+        </div>
+        <img src="{{ asset('img/logologin.png') }}" alt="Logo">
+    </div>
+
+    <div class="rigth-side">
         <div class="form-box">
             <h2>LOGIN</h2>
             <form method="POST" action="{{ route('login') }}">
@@ -46,8 +34,5 @@
         </div>
     </div>
 </div>
-@endsection
-
-    </div>
 </div>
 @endsection
