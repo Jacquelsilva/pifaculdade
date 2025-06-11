@@ -11,7 +11,7 @@
         <li><a href="{{ route('home') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
         <li><a href="{{ route('historico') }}"><i class="fas fa-history"></i><span>Histórico</span></a></li>
         <li><a href="{{ route('configuracao') }}"><i class="fas fa-cog"></i><span>Configuração</span></a></li>
-        <li><a href="{{ route('Dashboard') }}"><i class="fas fa-info-circle"></i><span>Relatórios</span></a></li>
+        <li><a href="{{ route('Relatorios') }}"><i class="fas fa-info-circle"></i><span>Relatórios</span></a></li>
         <li><a href="{{ route('saibamais') }}"><i class="fas fa-info-circle"></i><span>Saiba mais</span></a></li>
       </ul>
 
