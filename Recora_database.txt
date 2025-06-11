@@ -1,0 +1,28 @@
+CREATE DATABASE recora;
+
+CREATE TABLE usuarios(
+	cpf varchar(15) PRIMARY KEY,
+	nome_usuario VARCHAR(50) NOT NULL,
+	data_nascimento VARCHAR(10) NOT NULL,
+	email_usuario VARCHAR(50) UNIQUE NOT NULL,
+	senha VARCHAR(60) NOT NULL,
+	telefone VARCHAR(15) NOT NULL);
+
+CREATE TABLE categoria(
+    id_categoria int PRIMARY KEY,
+    cpf_usuario varchar(15),
+    nome_categoria varchar(100) not null,
+    cor_categoria varchar(50) not null,
+    foreign key(cpf_usuario) references usuarios(cpf));
+
+CREATE TABLE outros(
+    id_outros int primary key,
+    nome_outros varchar(50) not null,
+    data_pag_outros varchar(10) not null,
+    valor_outros decimal(10,2) not null,
+    data_renovacao_outros varchar(10),
+    status_outros varchar(8) not null,
+    plano_outros varchar(10) not null,
+    id_categoria int,
+    foreign key(id_categoria) references categoria(id_categoria));
+    
