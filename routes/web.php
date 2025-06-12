@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\ConfiguracaoController;
 // Rotas
 
 // Dashboard
-Route::get('/Dashboard', [DashboardController::class, 'index'])->name('Dashboard');
+Route::get('/Relatorios', [DashboardController::class, 'index'])->name('Relatorios');
 
 // Página "Saiba Mais"
 Route::get('/saibamais', [SaibamaisController::class, 'index'])->name('saibamais');

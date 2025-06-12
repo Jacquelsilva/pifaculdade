@@ -21,7 +21,7 @@
 
       <!-- Email -->
       <div class="field field-with-icon">
-        <label for="email">Email:</label>
+        <label for="email">E-mail:</label>
         <input type="email" id="email" placeholder="Insira um email válido" required>
         <i class="field-icon fas fa-envelope"></i>
       </div>
