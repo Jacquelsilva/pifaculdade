@@ -8,6 +8,7 @@ use App\Http\Controllers\Site\DashboardController;
 use App\Http\Controllers\Site\CadastroController;
 use App\Http\Controllers\Site\InicioController;
 use App\Http\Controllers\Site\HistoricoController;
+use App\Http\Controllers\Site\ContaconfigController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -30,6 +31,10 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 
 // Página de cadastro
 Route::get('/cadastro', [CadastroController::class, 'index'])->name('cadastro');
+
+// Botoes de configuracao
+Route::get('/contaconfig', [ContaconfigController::class, 'index'])->name('contaconfig');
+
 
 // Página de histórico
 Route::get('/historico', [HistoricoController::class, 'index'])->name('historico');

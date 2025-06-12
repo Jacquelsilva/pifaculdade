@@ -27,22 +27,22 @@
             <div class="setting-option">
                 <h2>Conta</h2>
                 <p>Gerenciar informações da sua conta</p>
-                <button>Editar Conta</button>
+                <a href="{{route('contaconfig')}}" class="btn">Editar Conta</a>
             </div>
             <div class="setting-option">
                 <h2>Notificação</h2>
                 <p>Configurar preferências de notificação</p>
-                <button>Editar Notificações</button>
+                <a href ="" class="btn" >Editar Notificações</a>
             </div>
             <div class="setting-option">
                 <h2>Tema</h2>
                 <p>Escolher tema de exibição</p>
-                <button>Alterar Tema</button>
+                <a href ="" class="btn" >Alterar tema </a>
             </div>
             <div class="setting-option">
                 <h2>Suporte</h2>
                 <p>Obter ajuda e suporte</p>
-                <button>Ir para Suporte</button>
+                <a href ="" class="btn" >Ir para suporte</a>
             </div>
         </div>
     </div>
