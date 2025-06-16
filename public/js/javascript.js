@@ -1,31 +1,30 @@
-// menu 
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    
-    // Toggle sidebar no desktop
-    menuToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('collapsed');
-    });
-    
-    // Toggle sidebar no mobile
-    function handleMobileMenu() {
-      if (window.innerWidth <= 768) {
-        sidebar.classList.remove('collapsed');
-        menuToggle.addEventListener('click', function() {
-          sidebar.classList.toggle('active');
-        });
-      } else {
-        sidebar.classList.remove('active');
-      }
-    }
-    
-    // Verificar no carregamento e no redimensionamento
-    handleMobileMenu();
-    window.addEventListener('resize', handleMobileMenu);
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  
+  // Toggle sidebar no desktop
+  menuToggle.addEventListener('click', function() {
+    sidebar.classList.toggle('collapsed');
   });
   
- // Dentro do DOMContentLoaded
+  // Toggle sidebar no mobile
+  function handleMobileMenu() {
+    if (window.innerWidth <= 768) {
+      sidebar.classList.remove('collapsed');
+      menuToggle.addEventListener('click', function() {
+        sidebar.classList.toggle('active');
+      });
+    } else {
+      sidebar.classList.remove('active');
+    }
+  }
+  
+  // Verificar no carregamento e no redimensionamento
+  handleMobileMenu();
+  window.addEventListener('resize', handleMobileMenu);
+});
+
+// Dentro do DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   const cardsContainer     = document.getElementById("cardsContainer");
   const createCardModal    = document.getElementById("createCardModal");
@@ -182,7 +181,16 @@ document.addEventListener("DOMContentLoaded", () => {
     data.subcategorias  = subcategorias;
     currentCard.dataset.info = JSON.stringify(data);
 
+    // Atualizar o texto do card (nome)
+    currentCard.textContent = data.name || currentCard.textContent;
+
+    // Atualizar a cor, se quiser permitir edição da cor no futuro
+    // currentCard.style.backgroundColor = data.color || currentCard.style.backgroundColor;
+
     editModal.classList.add("hidden");
+
+    // Reabrir modal de visualização com os dados atualizados
+    openViewModal(currentCard);
   });
 
   addInfoBtn.addEventListener("click", () => addInfoField());
