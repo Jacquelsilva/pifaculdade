@@ -89,6 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cardsContainer.insertBefore(card, addCard);
     createCardModal.classList.add("hidden");
+
+    card.addEventListener("click", () => openViewModal(card));
   });
 
   function openViewModal(card) {
