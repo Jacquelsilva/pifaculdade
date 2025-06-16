@@ -132,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   closeViewBtn.addEventListener("click", () => {
     viewModal.classList.add("hidden");
   });
+  
 
   editCardBtn.addEventListener("click", () => {
     const data = JSON.parse(currentCard.dataset.info);
