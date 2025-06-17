@@ -315,3 +315,21 @@ document.addEventListener("DOMContentLoaded", () => {
     return container;
   }
 });
+
+
+
+
+/*Editar conta*/
+const temaServidor = document.documentElement.className || 'claro';
+localStorage.setItem('tema', temaServidor);
+const idiomaServidor = document.getElementById('selectIdioma').value || 'pt';
+localStorage.setItem('idioma', idiomaServidor);
+
+const temaSalvo = localStorage.getItem('tema');
+const idiomaSalvo = localStorage.getItem('idioma');
+
+selectTema.value = temaSalvo;
+selectIdioma.value = idiomaSalvo;
+
+aplicarTema(temaSalvo);
+aplicarIdioma(idiomaSalvo);

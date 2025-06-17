@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="hero-img">
-    <img src="{{ asset('img/boa.png') }}" alt="Aplicativo Recora mostrando dashboard de assinaturas" loading="lazy">
+    <img src="{{ asset('img/logologin.png') }}" alt="Aplicativo Recora mostrando dashboard de assinaturas" loading="lazy">
   </div>
 </section>
 
