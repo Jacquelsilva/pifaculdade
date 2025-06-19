@@ -2,47 +2,34 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    protected $table = 'usuarios'; // nome da tabela
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    protected $primaryKey = 'cpf'; // chave primária
+
+    public $incrementing = false; // cpf não é auto-increment
+
+    protected $keyType = 'string'; // chave é string
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'cpf',
+        'nome_usuario',
+        'data_nascimento',
+        'email_usuario',
+        'senha',
+        'telefone',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ['senha']; // oculta senha nas respostas JSON
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public $timestamps = false; // sua tabela não tem created_at, updated_at
+
+    // Se quiser usar autenticação Laravel, defina:
+    public function getAuthPassword()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->senha; // campo senha no seu banco
     }
 }
