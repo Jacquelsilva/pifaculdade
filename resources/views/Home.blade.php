@@ -27,7 +27,20 @@
     </nav>
   </aside>
 
+
+
+  
+
+
   <main class="main-content">
+
+  <div style="display: flex; justify-content: flex-end; width: 100%; padding: 20px;">
+    <img src="{{ asset('img/boasvindanovo.jpg') }}" 
+         alt="Imagem de boas vindas" 
+         style="max-width: 800px; width: 100%; height: auto;">
+</div>
+
+
     <header>
       <h1>Seja Bem-Vindo(a), Isabela!</h1>
     </header>

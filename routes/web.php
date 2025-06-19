@@ -49,3 +49,8 @@ Route::post('/contaconfig/salvar', [ContaconfigController::class, 'salvar'])->na
 
 // Rotas admin
 Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');
+
+//redireciona para a rota /home
+Route::get('/', function () {
+    return redirect('/home');  
+});
