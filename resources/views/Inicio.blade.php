@@ -7,6 +7,8 @@
 <nav class="navbar" aria-label="Navegação principal">
   <div class="logo">
   <p><i class="fas fa-lightbulb"></i> Recora</p>
+  <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
 </div>
 
   <ul class="nav-links">
@@ -36,7 +38,10 @@
     </div>
   </div>
   <div class="hero-img">
-    <img src="{{ asset('img/logologin.png') }}" alt="Aplicativo Recora mostrando dashboard de assinaturas" loading="lazy">
+    <img src="{{ asset('img/fotosmartok.png') }}" alt="Aplicativo Recora mostrando dashboard de assinaturas" loading="lazy"
+    style="max-width: 1100px; width: 500%; height: auto;">
+</div>
+  
   </div>
 </section>
 
@@ -46,7 +51,7 @@
   <div class="diferencial-item">
     <i class="bi bi-graph-up" aria-hidden="true"></i>
     <h3>Economia comprovada</h3>
-    <p>Usuários economizam em média R$120/mês</p>
+    <p>Usuários economizam em média R$120,00/mês</p>
   </div>
   <div class="diferencial-item">
     <i class="bi bi-bell" aria-hidden="true"></i>
@@ -64,8 +69,10 @@
 <section class="smartphone-promo" aria-labelledby="app-feature-heading">
   <div class="smartphone-content">
     <div class="smartphone-image">
-      <img src="{{ asset('img/fotosmart.png') }}" alt="App ReCora sendo exibido em um smartphone" loading="lazy">
+      <img src="{{ asset('img/homem.jpg') }}" alt="App Recora sendo exibido em um smartphone" loading="lazy"
+      style="max-width: 500px; width: 100%; height: auto;>
     </div>
+    
     <div class="smartphone-text">
       <h2 id="app-feature-heading">Tudo na palma da sua mão</h2>
       <p>O aplicativo Recora oferece:</p>
@@ -114,7 +121,7 @@
   <div class="depoimento-lista">
     <div class="depoimento">
       <div class="rating" aria-label="5 estrelas">★★★★★</div>
-      <p>"Economizei R$150 no primeiro mês!"</p>
+      <p>"Economizei R$150,00 no primeiro mês!"</p>
       <span>João M., São Paulo</span>
     </div>
     <div class="depoimento">
@@ -134,7 +141,7 @@
 <section id="planos" class="planos" aria-labelledby="planos-heading">
   <div class="planos-header">
     <h2 id="planos-heading">Planos que cabem no seu bolso</h2>
-    <p class="planos-obs">Experimente 7 dias grátis</p>
+    <p class="planos-obs">Experimente 30 dias grátis</p>
     <p class="planos-obs">*Cancele quando quiser sem taxas</p>
   </div>
   <div class="planos-grid">

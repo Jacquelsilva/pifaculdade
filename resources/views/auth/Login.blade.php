@@ -10,7 +10,7 @@
             <h1>Organize suas assinaturas e contas com Recora!</h1>
             <p>Cadastre-se agora e evite cobranças desnecessárias!</p>
         </div>
-        <img src="{{ asset('img/logologin.png') }}" alt="Logo">
+        <img src="{{ asset('img/logobranco.png') }}" alt="Logo">
     </div>
 
     <div class="rigth-side">
