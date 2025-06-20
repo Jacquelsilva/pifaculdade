@@ -8,10 +8,12 @@
     <div class="content"> -->
   <main class="main-content p-4">
     <div class="content max-w-screen-lg mx-auto">
-   
+
 
       <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[var(--texto)]">Seja Bem-Vindo(a), Isabela!</h2>
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[var(--texto)]">
+          Seja Bem-Vindo(a), {{ auth()->user()->nome_usuario }}!
+        </h2>
       </div>
 
       <section
