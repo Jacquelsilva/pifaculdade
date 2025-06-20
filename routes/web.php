@@ -27,7 +27,11 @@ use App\Http\Controllers\Admin\ConfiguracaoController;
 // Rotas públicas
 Route::get('/inicio', [InicioController::class, 'index'])->name('inicio');
 Route::get('/saibamais', [SaibamaisController::class, 'index'])->name('saibamais');
+
 Route::get('/cadastro', [CadastroController::class, 'index'])->name('cadastro');
+Route::post('/cadastro', [CadastroController::class, 'store'])->name('cadastro.store');
+
+Route::get('/home', [App\Http\Controllers\Site\HomeController::class, 'index'])->name('home');
 Route::get('/sair', function () {
     return view('auth.sair');
 })->name('sair');
