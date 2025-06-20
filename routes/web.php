@@ -25,7 +25,6 @@ use App\Http\Controllers\Admin\ConfiguracaoController;
 */
 
 // Rotas públicas
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/inicio', [InicioController::class, 'index'])->name('inicio');
 Route::get('/saibamais', [SaibamaisController::class, 'index'])->name('saibamais');
 Route::get('/cadastro', [CadastroController::class, 'index'])->name('cadastro');
@@ -34,14 +33,20 @@ Route::get('/sair', function () {
 })->name('sair');
 
 // Rotas de autenticação
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::get('/login', [AuthenticatedSessionController::class, 'index'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'logar'])->name('logar');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Rotas protegidas
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/historico', [HistoricoController::class, 'index'])->name('historico');
-Route::get('/contaconfig', [ContaconfigController::class, 'index'])->name('contaconfig');
-Route::post('/contaconfig/salvar', [ContaconfigController::class, 'salvar'])->name('contaconfig.salvar');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/historico', [HistoricoController::class, 'index'])->name('historico');
+    Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');
+    Route::get('/configuracao/preferencias', [ContaconfigController::class, 'index'])->name('contaconfig');
+    Route::get('/configuracao/conta', [ContaconfigController::class, 'conta'])->name('contaconfig.conta');
+    Route::post('/configuracao/preferencias/salvar', [ContaconfigController::class, 'salvar'])->name('contaconfig.salvar');
+    Route::post('/configuracao/conta/salvar', [ContaconfigController::class, 'salvarConta'])->name('contaconfig.salvarConta');
+});
 
 // Rotas admin
-Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');

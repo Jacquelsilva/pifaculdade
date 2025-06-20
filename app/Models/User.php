@@ -2,47 +2,64 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    // Nome da tabela no banco
+    protected $table = 'usuarios';
+
+    // Chave primária não-incremental do tipo string
+    protected $primaryKey = 'cpf';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    // Colunas que podem ser preenchidas em massa
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'cpf',
+        'nome_usuario',
+        'data_nascimento',
+        'email_usuario',
+        'senha',
+        'telefone',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+    // Colunas que não aparecem na serialização (JSON, arrays etc)
     protected $hidden = [
-        'password',
+        'senha',
         'remember_token',
     ];
 
+    // Casts para tipos nativos
+    protected $casts = [
+        // se quiser interpretar data_nascimento como Carbon
+        'data_nascimento' => 'date:Y-m-d',
+    ];
+
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Laravel espera que o campo de senha seja 'password'.
+     * Como aqui é 'senha', precisamos dizer ao framework como obtê-la.
      */
-    protected function casts(): array
+    public function getAuthPassword()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->senha;
+    }
+
+    /**
+     * Laravel por padrão usa 'email' para envio de notificações.
+     * Aqui sobrescrevemos para usar 'email_usuario'.
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email_usuario;
+    }
+
+    public function username(): string
+    {
+        return 'email_usuario';
     }
 }
