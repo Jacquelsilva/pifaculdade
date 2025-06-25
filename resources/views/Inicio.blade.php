@@ -207,7 +207,6 @@
         <h4>Empresa</h4>
         <a href="/sobre">Sobre nós</a>
         <a href="/contato">Contato</a>
-        <a href="/blog">Blog</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -226,7 +225,7 @@
     </form>
   </div>
   <div class="footer-copyright">
-    <p>© 2023 Recora. Todos os direitos reservados.</p>
+    <p>© 2025 Recora. Todos os direitos reservados.</p>
     <div class="footer-social">
       <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
       <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
