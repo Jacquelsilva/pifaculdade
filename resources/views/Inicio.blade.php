@@ -187,7 +187,7 @@
 <section class="cta-final" aria-labelledby="cta-final-heading">
   <h2 id="cta-final-heading">Pronto para transformar seu controle financeiro?</h2>
   <a href="/cadastro" class="btn btn-cta">Comece gratuitamente</a>
-  <p>7 dias grátis • Sem necessidade de cartão</p>
+  <p>30 dias grátis • Sem necessidade de cartão</p>
 </section>
 
 @endsection
