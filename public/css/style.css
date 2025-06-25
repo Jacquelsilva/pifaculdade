@@ -1662,6 +1662,24 @@ a {
   color: #000;
 }
 
+.card-container {
+  display: flex;
+  justify-content: center; /* centraliza os cards horizontalmente */
+  gap: 20px;               /* espaço entre os cards */
+  margin-top: 20px;
+  flex-wrap: wrap;         /* quebra linha em telas pequenas */
+}
+
+.card-a, .card-b {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px; /* define largura padrão dos cards */
+}
+
+
 body {
   font-family: sans-serif;
   margin: 0;
