@@ -263,12 +263,8 @@ a {
   top: 0;
   left: 0;
   right: 0;
-<<<<<<< HEAD
   height: 100px;                   /* altura fixa */
-=======
-  height: 80px;
-  /* altura fixa */
->>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
+
   background-color: #ffffff;
   display: flex;
   align-items: center;
