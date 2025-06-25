@@ -1040,6 +1040,19 @@ nav ul li a i {
   transition: all 0.3s;
   margin-left: 300px;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
+  flex: 1;
+}
 
 header {
   display: flex;

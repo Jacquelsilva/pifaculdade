@@ -39,7 +39,10 @@
 
 
     {{-- Conteúdo da página --}}
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
+    
 
     {{-- Rodapé padrão --}}
     @hasSection('footer')
