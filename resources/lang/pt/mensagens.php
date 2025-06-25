@@ -2,6 +2,7 @@
 
 return [
     'configuracoes' => 'Configurações',
+    'preferencias' => 'Preferências',
     'tema' => 'Tema',
     'claro' => 'Claro',
     'escuro' => 'Escuro',

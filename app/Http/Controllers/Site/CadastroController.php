@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
@@ -25,7 +26,7 @@ class CadastroController extends Controller
             'telefone' => 'required|string',
         ]);
 
-        Usuario::create([
+        User::create([
             'cpf' => $request->cpf,
             'nome_usuario' => $request->nome_usuario,
             'data_nascimento' => $request->data_nascimento,
@@ -34,6 +35,6 @@ class CadastroController extends Controller
             'telefone' => $request->telefone,
         ]);
 
-        return redirect()->route('home')->with('success', 'Cadastro realizado com sucesso!');
+        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
     }
 }

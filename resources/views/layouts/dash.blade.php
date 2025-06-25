@@ -4,42 +4,63 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-<<<<<<< HEAD
-    <!-- Bootstrap Icons CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-=======
     @vite(['resources/css/app.css', 'resources/js/app.js'])
->>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
 
     <title>@yield('title')</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital" rel="stylesheet" />
-
     <!-- Ícones -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-
     <!-- JS -->
     <script src="{{ asset('js/javascript.js') }}"></script>
-
     @yield('styles')
     @yield('head-scripts')
 </head>
 
 <body>
 
+    {{-- Menu --}}
 
-    {{-- Conteúdo da página --}}
+    <aside class="sidebar">
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="{{ route('home') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
+                <li><a href="{{ route('historico') }}"><i class="fas fa-history"></i><span>Histórico</span></a></li>
+                <li><a href="{{ route('configuracao') }}"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
+                <li><a href="{{ route('dashboard') }}"><i class="fas fa-info-circle"></i><span>Relatórios</span></a></li>
+                <li><a href="{{ route('saibamais') }}"><i class="fas fa-info-circle"></i><span>Saiba mais</span></a></li>
+            </ul>
+
+            <div class="logout">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" style="background: none; border: none; color: inherit; padding: 0; display: flex; align-items: center;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span style="margin-left: 5px;">Sair</span>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </aside>
+
+    {{-- Conteúdo principal --}}
+
     @yield('content')
+
+
+    <!-- <main class="min-h-screen flex justify-center">
+        <section class="py-4 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-6 ">
+        </section>
+    </main> -->
 
     {{-- Rodapé padrão --}}
     @hasSection('footer')

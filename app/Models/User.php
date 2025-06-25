@@ -2,18 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Authenticatable
+class User extends Authenticatable
 {
-    protected $table = 'usuarios'; // nome da tabela
+    use HasFactory, Notifiable;
 
-    protected $primaryKey = 'cpf'; // chave primária
+    // Nome da tabela no banco
+    protected $table = 'usuarios';
 
-    public $incrementing = false; // cpf não é auto-increment
+    // Chave primária não-incremental do tipo string
+    protected $primaryKey = 'cpf';
+    public $incrementing = false;
+    protected $keyType = 'string';
 
-    protected $keyType = 'string'; // chave é string
-
+    // Colunas que podem ser preenchidas em massa
     protected $fillable = [
         'cpf',
         'nome_usuario',
@@ -23,13 +28,38 @@ class Usuario extends Authenticatable
         'telefone',
     ];
 
-    protected $hidden = ['senha']; // oculta senha nas respostas JSON
+    // Colunas que não aparecem na serialização (JSON, arrays etc)
+    protected $hidden = [
+        'senha',
+        'remember_token',
+    ];
 
-    public $timestamps = false; // sua tabela não tem created_at, updated_at
+    // Casts para tipos nativos
+    protected $casts = [
+        // se quiser interpretar data_nascimento como Carbon
+        'data_nascimento' => 'date:Y-m-d',
+    ];
 
-    // Se quiser usar autenticação Laravel, defina:
+    /**
+     * Laravel espera que o campo de senha seja 'password'.
+     * Como aqui é 'senha', precisamos dizer ao framework como obtê-la.
+     */
     public function getAuthPassword()
     {
-        return $this->senha; // campo senha no seu banco
+        return $this->senha;
+    }
+
+    /**
+     * Laravel por padrão usa 'email' para envio de notificações.
+     * Aqui sobrescrevemos para usar 'email_usuario'.
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email_usuario;
+    }
+
+    public function username(): string
+    {
+        return 'email_usuario';
     }
 }

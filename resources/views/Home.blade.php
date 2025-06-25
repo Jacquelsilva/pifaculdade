@@ -1,32 +1,22 @@
-@extends('layouts.main')
+@extends('layouts.dash')
 
 @section('title', 'home')
 
 @section('content')
-<div class="dashboard">
-  <aside class="sidebar">
-    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    <nav>
-      <ul>
-        <li><a href="{{ route('home') }}"><i class="fas fa-home"></i><span>Home</span></a></li>
-        <li><a href="{{ route('historico') }}"><i class="fas fa-history"></i><span>Histórico</span></a></li>
-        <li><a href="{{ route('configuracao') }}"><i class="fas fa-cog"></i><span>Configurações</span></a></li>
-        <li><a href="{{ route('dashboard') }}"><i class="fas fa-info-circle"></i><span>Relatórios</span></a></li>
-        <li><a href="{{ route('saibamais') }}"><i class="fas fa-info-circle"></i><span>Saiba mais</span></a></li>
-      </ul>
+<div class="dashboard py-6">
+  <!-- <main class="main-content">
+    <div class="content"> -->
+  <main class="main-content p-4">
+    <div class="content max-w-screen-lg mx-auto">
 
-      <div class="logout">
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit" style="background: none; border: none; color: inherit; padding: 0; display: flex; align-items: center;">
-            <i class="fas fa-sign-out-alt"></i>
-            <span style="margin-left: 5px;">Sair</span>
-          </button>
-        </form>
+
+      <div class="max-w-screen-md mb-8 lg:mb-16">
+        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[var(--texto)]">
+          Seja Bem-Vindo(a), {{ auth()->user()->nome_usuario }}!
+        </h2>
       </div>
-    </nav>
-  </aside>
 
+<<<<<<< HEAD
   <main class="main-content">
 
   <div style="display: flex; justify-content: flex-end; width: 100%; padding: 0px;">
@@ -39,30 +29,92 @@
     <header>
       <h1>Seja Bem-Vindo(a), Isabela!</h1>
     </header>
+=======
+      <section
+        id="cardsContainer"
+        class="
+          grid grid-cols-2 gap-4                   
+          sm:[grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] 
+          sm:gap-6  
+          flex flex-wrap justify-center gap-2     
+          sm:grid                                  
+  ">
+        <div class="card blue bg-[var(--primaria)] flex items-center justify-center aspect-square rounded-lg text-white font-bold">
+          STREAMING
+        </div>
+        <div class="card red bg-red-500 flex items-center justify-center aspect-square rounded-lg text-white font-bold">
+          CONSULTAS
+        </div>
+        <div
+          id="addCard"
+          class="card add bg-[var(--secundaria)] flex items-center justify-center aspect-square rounded-lg text-white font-bold
+     text-3xl">
+          +
+        </div>
+        <!-- …outros cards… -->
+      </section>
+>>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
 
-    <section class="cards" id="cardsContainer">
-      <div class="card blue" data-info="">STREAMING</div>
-      <div class="card red" data-info="">CONSULTAS</div>
-      <div class="card add" id="addCard"><i>+</i></div>
-    </section>
+
+
+    </div>
   </main>
+
 </div>
 
 <!-- Modal para criar novo card -->
-<div id="createCardModal" class="modal hidden">
-  <div class="modal-content">
-    <h3>Criar Novo Card</h3>
-    <label for="cardName">Nome do Card:</label>
-    <input type="text" id="cardName" placeholder="Digite o nome">
+<div id="createCardModal" class="modal hidden shadow-lg bg-[var(--bg)]">
+  <div
+    class="text-[var(--texto)] rounded-lg  p-6 max-w-md w-full mx-auto">
+    <h3 class="text-xl font-semibold mb-4">Criar Novo Card</h3>
 
-    <label for="cardColor">Cor:</label>
-    <input type="color" id="cardColor" value="#6c5ce7">
+    <div class="mb-4 mt-6">
+      <label for="cardName" class="block mb-1 text-lg">Nome do Card:</label>
+      <input
+        type="text"
+        id="cardName"
+        placeholder="Digite o nome"
+        class="block w-full mt-4
+             bg-[var(--fundo)] text-[var(--texto)]
+             border border-[var(--borda)]
+             rounded-md py-2 px-3
+             placeholder:text-[var(--borda)]
+             focus:outline-none focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)]
+             transition-colors duration-150" />
+    </div>
 
-    <div class="modal-buttons">
-      <button id="createCardBtn">Criar</button>
-      <button id="cancelCreate">Cancelar</button>
+    <div class="mb-6">
+      <label for="cardColor" class="block mb-1 text-lg">Cor:</label>
+      <input
+        type="color"
+        id="cardColor"
+        value="#6c5ce7"
+        class="h-10 w-16 p-1 mt-4
+             border border-[var(--borda)]
+             rounded-md
+             focus:outline-none focus:ring-2 focus:ring-[var(--primaria)]
+             transition-colors duration-150" />
+    </div>
+
+    <div class="flex justify-end gap-2">
+      <button
+        id="cancelCreate"
+        class="text-[var(--texto)]
+         bg-[var(--borda)]
+         px-4 py-2 rounded-md border border-[var(--borda)] shadow-md
+         hover:bg-[var(--borda)] transition-colors duration-150">
+        Cancelar
+      </button>
+      <button
+        id="createCardBtn"
+        class="bg-[var(--primaria)] text-[var(--texto-botao)]
+             px-4 py-2 rounded-md border border-[var(--borda)] shadow-md
+             hover:bg-[var(--secundaria)] transition-colors duration-150 bg-[var(--fundo)]">
+        Criar
+      </button>
     </div>
   </div>
+
 </div>
 
 <!-- Modal de visualização -->
@@ -82,7 +134,7 @@
   <div class="modal-content">
     <h3>Editar Informações do Card</h3>
     <form id="editCardForm">
-       <label for="editCardDescription">Descrição:</label>
+      <label for="editCardDescription">Descrição:</label>
       <textarea id="editCardDescription" placeholder="Digite uma descrição..." rows="3" style="width: 100%; margin-bottom: 10px;"></textarea>
       <div id="infoContainer"></div>
       <button type="button" id="addInfoBtn">+ Adicionar Mês e Valor</button>
@@ -91,8 +143,8 @@
 
       <p style="margin-top: 10px;">
         <strong>Total
-        
-        :</strong> R$ <span id="editTotalValue">0,00</span>
+
+          :</strong> R$ <span id="editTotalValue">0,00</span>
       </p>
     </form>
 
@@ -104,7 +156,7 @@
 </div>
 @endsection
 
-@section('scripts')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-<script src="{{ asset('js/home.js') }}"></script>
-@endsection
+<!-- @section('scripts') -->
+<!-- <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<script src="{{ asset('js/home.js') }}"></script> -->
+<!-- @endsection -->

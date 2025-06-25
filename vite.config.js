@@ -10,4 +10,13 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+    watch: {
+        usePolling: true,
+        origin: 'localhost',
+    },
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });

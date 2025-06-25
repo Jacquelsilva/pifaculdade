@@ -33,7 +33,6 @@ use App\Http\Controllers\Admin\ConfiguracaoController;
 */
 
 // Rotas públicas
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/inicio', [InicioController::class, 'index'])->name('inicio');
 Route::get('/saibamais', [SaibamaisController::class, 'index'])->name('saibamais');
 
@@ -54,20 +53,25 @@ Route::get('/privacidade', [PrivacidadeController::class, 'index'])->name('priva
 Route::get('/termos', [TermosController::class, 'index'])->name('termos');
 
 // Rotas de autenticação
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::get('/login', [AuthenticatedSessionController::class, 'index'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'logar'])->name('logar');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // Rotas protegidas
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/historico', [HistoricoController::class, 'index'])->name('historico');
-Route::get('/contaconfig', [ContaconfigController::class, 'index'])->name('contaconfig');
-Route::post('/contaconfig/salvar', [ContaconfigController::class, 'salvar'])->name('contaconfig.salvar');
-
-// Rotas admin
-Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');
-
-//redireciona para a rota /home
-Route::get('/', function () {
-    return redirect('/home');  
+Route::middleware('auth')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/historico', [HistoricoController::class, 'index'])->name('historico');
+    Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');
+    Route::get('/configuracao/preferencias', [ContaconfigController::class, 'index'])->name('contaconfig');
+    Route::get('/configuracao/conta', [ContaconfigController::class, 'conta'])->name('contaconfig.conta');
+    Route::post('/configuracao/preferencias/salvar', [ContaconfigController::class, 'salvar'])->name('contaconfig.salvar');
+    Route::post('/configuracao/conta/salvar', [ContaconfigController::class, 'salvarConta'])->name('contaconfig.salvarConta');
 });
 
+// Rotas admin
+<<<<<<< HEAD
+Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');
+
+=======
+>>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
