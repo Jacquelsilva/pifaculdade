@@ -6,9 +6,9 @@
 
 <nav class="navbar" aria-label="Navegação principal">
   <div class="logo">
-  <p><i class="fas fa-lightbulb"></i> Recora</p>
-  <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
-
+  <p>
+  <img src="{{ asset('img/logonovomenor.png') }}" alt="Ícone do Recora" width="15" height="15">
+  </p>
 </div>
 
   <ul class="nav-links">

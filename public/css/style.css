@@ -220,7 +220,7 @@ html {
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;                   /* altura fixa */
+  height: 100px;                   /* altura fixa */
   background-color: #ffffff;
   display: flex;
   align-items: center;            /* centra verticalmente */
