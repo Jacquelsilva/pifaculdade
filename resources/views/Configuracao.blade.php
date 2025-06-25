@@ -50,7 +50,6 @@
             </a>
         </div>
 
-
         <!-- Seção: Suporte -->
         <div class="bg-[var(--bg)] rounded-md p-5 shadow flex justify-between items-start">
             <div>
@@ -60,6 +59,7 @@
                 </p>
             </div>
             <a
+                href="{{ route('suporte') }}"
                 class="bg-[var(--primaria)] text-[var(--texto-botao)]
                  px-4 py-2 rounded-md shadow
                  hover:bg-[var(--secundaria)]
