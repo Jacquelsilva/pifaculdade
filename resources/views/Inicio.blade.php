@@ -177,7 +177,7 @@
   <h2 id="faq-heading">Dúvidas frequentes</h2>
   <div class="faq-item">
     <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-resposta-1">Como cancelo assinaturas através do app?</button>
-    <div class="faq-resposta" id="faq-resposta-1" hidden>
+    <div class="faq-resposta" id="faq-resposta-1">
       <p>O Recora ajuda você a identificar e cancelar assinaturas não desejadas diretamente pelos provedores.</p>
     </div>
   </div>

@@ -19,20 +19,26 @@
         <p>Oferecemos planos que se adequam as suas necessidades!</p>
         <p>Experimente 1 mês gratuito!</p>
         <p>Depois, escolha entre os planos:</p>
-        <div class="card-container">
-            <div class="card-a">
+        <div class="planos-grid">
+            <div class="plano">
+                <h3>Plano A</h3>
+                
                 <ul>
-                    <li>Plano A - Ainda em desenvolvimento</li>
+                    <li><span aria-hidden="true">✓</span> Ainda em Desenvolvimento</li>
                 </ul>
+                <a href="/cadastro" class="btn">Plano A</a>
             </div>
-
-            <div class="card-b">
-                <ul>
-                    <li>Plano B - Ainda em desenvolvimento.</li>
-                </ul>
+            <div class="plano destaque">
+                <div class="badge-recomendado">Recomendado</div>
+                    <h3>Plano B</h3>
+                    <ul>
+                    <li><span aria-hidden="true">✓</span> Ainda em desenvolvimento</li>
+                    </ul>
+                    <a href="/cadastro" class="btn btn-premium">Plano B</a>
+                </div>
             </div>
         </div>
-    </div>
+</div>
 </section>
 @endsection
 
