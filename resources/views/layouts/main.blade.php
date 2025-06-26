@@ -4,12 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-<<<<<<< HEAD
     <!-- Bootstrap Icons CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-=======
     @vite(['resources/css/app.css', 'resources/js/app.js'])
->>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
 
     <title>@yield('title')</title>
     

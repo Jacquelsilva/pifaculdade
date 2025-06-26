@@ -70,8 +70,5 @@ Route::middleware('auth')->group(function () {
 });
 
 // Rotas admin
-<<<<<<< HEAD
-Route::get('/configuracao', [ConfiguracaoController::class, 'index'])->name('configuracao');
 
-=======
->>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
+

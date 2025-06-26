@@ -3,11 +3,12 @@
 @section('title', __('mensagens.config'))
 
 @section('content')
+<div class="container-config">
 <div class="grid">
 
   <div class="max-w-screen-md mb-8 lg:mb-16">
     <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[var(--texto)]">{{ __('mensagens.preferencias') }}</h2>
-    <p class="text-gray-500 sm:text-xl dark:text-gray-400">
+    <p class="mt-2 text-lg sm:text-xl" style="color: var(--texto);">
       Personalize sua experiência: escolha tema, idioma e notificações com apenas um clique.
     </p>
   </div>

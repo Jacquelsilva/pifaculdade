@@ -5,22 +5,19 @@
 @section('content')
 <div class="login-page">
     <div class="container-login">
+        <!-- Lado Esquerdo -->
         <div class="left-side">
             <div class="text-container">
                 <h1>Organize suas assinaturas e contas com Recora!</h1>
                 <p>Cadastre-se agora e evite cobranças desnecessárias!</p>
             </div>
-            <img src="{{ asset('img/logologin.png') }}" alt="Logo">
+            <img src="{{ asset('img/logonovomenor.png') }}" alt="Logo">
         </div>
-<<<<<<< HEAD
-        <img src="{{ asset('img/logobranco.png') }}" alt="Logo">
-    </div>
-=======
->>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
 
-        <div class="rigth-side bg-[var(--bg)]">
+        <!-- Lado Direito -->
+        <div class="right-side">
             <div class="form-box">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[var(--texto)]">Login</h2>
+                <h2>Login</h2>
 
                 {{-- Mensagem de erro genérico --}}
                 @if(session('error'))
@@ -42,39 +39,18 @@
 
                 <form method="POST" action="{{ route('logar') }}">
                     @csrf
-                    <input class="
-        block w-full
-        mt-4
-        bg-[var(--fundo)]
-        text-[var(--texto)]
-        border border-[var(--borda)]
-        rounded-md
-        py-2 px-3
-        focus:outline-none focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)]
-        transition-colors duration-150
-      " type="email" name="email" placeholder="E-mail" required>
-
-                    <input class="
-        block w-full
-        mt-4
-        bg-[var(--fundo)]
-        text-[var(--texto)]
-        border border-[var(--borda)]
-        rounded-md
-        py-2 px-3
-        focus:outline-none focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)]
-        transition-colors duration-150
-      " type="password" name="password" placeholder="Senha" required>
+                    <input type="email" name="email" placeholder="E-mail" required>
+                    <input type="password" name="password" placeholder="Senha" required>
                     <button type="submit">Entrar</button>
                 </form>
 
-                <p>ou</p>
+                <p class = "opcao">ou</p>
                 <button class="google-btn">
                     <i class="fab fa-google"></i> Entrar com Google
                 </button>
 
-                <p class="register-link text-[var(--texto)]">
-                    Ainda não tem uma conta ? <a href="{{ route('cadastro') }}"> <span class="pl-2">Cadastre-se</ class="pl-2"></a>
+                <p class="register-link">
+                    Ainda não tem uma conta? <a href="{{ route('cadastro') }}">Cadastre-se</a>
                 </p>
             </div>
         </div>

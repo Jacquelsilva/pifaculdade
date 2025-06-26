@@ -16,7 +16,6 @@
         </h2>
       </div>
 
-<<<<<<< HEAD
   <main class="main-content">
 
   <div style="display: flex; justify-content: flex-end; width: 100%; padding: 0px;">
@@ -24,12 +23,6 @@
          alt="Imagem de boas vindas" 
          style="max-width: 800px; width: 100%; height: auto;">
 </div>
-
-
-    <header>
-      <h1>Seja Bem-Vindo(a), Isabela!</h1>
-    </header>
-=======
       <section
         id="cardsContainer"
         class="
@@ -53,7 +46,6 @@
         </div>
         <!-- …outros cards… -->
       </section>
->>>>>>> 02ddcd92c39eb4db573792f592a2a19d779c33d9
 
 
 
