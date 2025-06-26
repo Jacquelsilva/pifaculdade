@@ -177,7 +177,7 @@
   <h2 id="faq-heading">Dúvidas frequentes</h2>
   <div class="faq-item">
     <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-resposta-1">Como cancelo assinaturas através do app?</button>
-    <div class="faq-resposta" id="faq-resposta-1" hidden>
+    <div class="faq-resposta" id="faq-resposta-1">
       <p>O Recora ajuda você a identificar e cancelar assinaturas não desejadas diretamente pelos provedores.</p>
     </div>
   </div>
@@ -187,7 +187,7 @@
 <section class="cta-final" aria-labelledby="cta-final-heading">
   <h2 id="cta-final-heading">Pronto para transformar seu controle financeiro?</h2>
   <a href="/cadastro" class="btn btn-cta">Comece gratuitamente</a>
-  <p>7 dias grátis • Sem necessidade de cartão</p>
+  <p>30 dias grátis • Sem necessidade de cartão</p>
 </section>
 
 @endsection

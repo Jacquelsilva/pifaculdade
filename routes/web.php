@@ -18,6 +18,7 @@ use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\PrivacidadeController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\TermosController;
+use App\Http\Controllers\SuporteController;
 
 // Auth Controllers
 use App\Http\Controllers\Auth\LoginController;
@@ -51,6 +52,7 @@ Route::get('/sobre', [SobreController::class, 'index'])->name('sobre');
 Route::get('/contato', [ContatoController::class, 'index'])->name('contato');
 Route::get('/privacidade', [PrivacidadeController::class, 'index'])->name('privacidade');
 Route::get('/termos', [TermosController::class, 'index'])->name('termos');
+Route::get('/suporte', [SuporteController::class, 'index'])->name('suporte');
 
 // Rotas de autenticação
 Route::get('/login', [AuthenticatedSessionController::class, 'index'])->name('login');
@@ -67,8 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/configuracao/conta', [ContaconfigController::class, 'conta'])->name('contaconfig.conta');
     Route::post('/configuracao/preferencias/salvar', [ContaconfigController::class, 'salvar'])->name('contaconfig.salvar');
     Route::post('/configuracao/conta/salvar', [ContaconfigController::class, 'salvarConta'])->name('contaconfig.salvarConta');
-});
 
-// Rotas admin
+});
 
 
