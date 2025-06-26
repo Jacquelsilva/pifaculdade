@@ -315,7 +315,7 @@ form button[type="submit"] {
   top: 0;
   left: 0;
   right: 0;
-  height: 100px;                  
+  height: 100px;                   
   background-color: #ffffff;
   display: flex;
   align-items: center;
@@ -422,6 +422,77 @@ form button[type="submit"] {
   background-color: #0059b3;
 }
 
+/*css pagina sobre */
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 40px 20px;
+}
+
+.texto {
+   flex: 1 1 50%;
+  padding-right: 20px;
+}
+
+.imagem {
+  flex: 1 1 40%;
+  text-align: right;
+}
+
+.imagem img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 20px 30px;
+  }
+
+  .hero-text,
+  .hero-img,
+  .texto,
+  .imagem {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .hero-text h1,
+  .texto h1 {
+    font-size: 2em;
+  }
+
+  .hero-text p,
+  .texto p {
+    font-size: 1em;
+  }
+
+  .imagem img {
+    max-width: 90%;
+    margin-top: 20px;
+  }
+}
+
+/*CSS página Contato*/
+
+.card-contato{
+  background-color: white;
+  color: black;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+
+
+  
 /* diferenciais.css */
 .diferenciais {
   display: flex;
@@ -880,6 +951,22 @@ body {
   box-sizing: border-box;
 }
 
+/*faq*/
+.faq-resposta {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-resposta.ativo {
+  max-height: 500px;
+}
+
+.planos-grid {
+  color: black;
+}
+
+
+
 /* Caixa do formulário - também com borda preta */
 .register-container {
   background: #fff;
@@ -1085,6 +1172,20 @@ nav ul li a i {
   padding: 20px 0px !important;
   transition: all 0.3s;
   margin-left: 300px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+body > main {
+  flex: 1;
 }
 
 header {
@@ -1517,8 +1618,6 @@ a {
   color: #ffffff;
 }
 
-/* dashboard */
-
 .container-gastos {
   padding: 2rem;
   margin: 2rem auto;
@@ -1528,11 +1627,51 @@ a {
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
+.card-termos {
+  background-color: white;
+  color: black;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.card-recursos{
+  background-color: white;
+  color: black;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  margin-top: 20px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center; 
+  gap: 20px;               
+  margin-top: 20px;
+  flex-wrap: wrap;  
+}
+/* dashboard */
+
 
 .card {
   border-radius: 1rem;
   color: #000;
 }
+
+
+
+.card-a, .card-b {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px; /* define largura padrão dos cards */
+}
+
 
 body {
   font-family: sans-serif;
@@ -1743,6 +1882,7 @@ select {
 
 /* Footer Styles */
 .footer {
+  margin-top: 50px;
   background-color: #033b96;
   color: #ecf0f1;
   padding: 3rem 1rem 1rem;
