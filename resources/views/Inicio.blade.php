@@ -6,14 +6,14 @@
 
 <nav class="navbar" aria-label="Navegação principal">
   <div class="logo">
-  <p>
-  <img src="{{ asset('img/logonovomenor.png') }}" alt="Ícone do Recora" width="15" height="15">
-  </p>
-</div>
+    <p>
+      <img src="{{ asset('img/logonovomenor.png') }}" alt="Ícone do Recora" width="15" height="15">
+    </p>
+  </div>
 
   <ul class="nav-links">
     <li>
-      <a href="/ajuda" aria-label="Ajuda">
+      <a href="/contato" aria-label="Ajuda">
         <i class="bi bi-question-circle" aria-hidden="true"></i>
         Ajuda
       </a>
@@ -40,8 +40,6 @@
   <div class="hero-img">
     <img src="{{ asset('img/fotosmartok.png') }}" alt="Aplicativo Recora mostrando dashboard de assinaturas" loading="lazy"
     style="max-width: 1100px; width: 500%; height: auto;">
-</div>
-  
   </div>
 </section>
 
@@ -70,7 +68,7 @@
   <div class="smartphone-content">
     <div class="smartphone-image">
       <img src="{{ asset('img/homem.jpg') }}" alt="App Recora sendo exibido em um smartphone" loading="lazy"
-      style="max-width: 500px; width: 100%; height: auto;>
+      style="max-width: 500px; width: 100%; height: auto;">
     </div>
     
     <div class="smartphone-text">
@@ -83,34 +81,32 @@
         <li><span aria-hidden="true">💳</span> Gerenciamento multiplataforma</li>
       </ul>
       <div class="app-download">
-  <div class="download-buttons">
-    <a href="#" class="download-btn google-play" aria-label="Baixar na Google Play">
-      <span class="store-logo">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path d="M3.063 3.627v16.747c0 .54.442.977.987.977h16.762c.545 0 .987-.438.987-.977V3.627c0-.54-.442-.977-.987-.977H4.05c-.545 0-.987.438-.987.977zm16.762 1.955H4.05v14.836h15.775V5.582zM12 7.174l3.482 3.482-3.482 3.482-3.482-3.482L12 7.174zm-4.468 2.495l3.482 3.482-3.482 3.482V9.669zm8.936 0v7.413l-3.482-3.482 3.482-3.482z"/>
-        </svg>
-      </span>
-      <span class="store-info">
-        <span class="available-on">Disponível no</span>
-        <span class="store-name">Google Play</span>
-      </span>
-    </a>
+        <div class="download-buttons">
+          <a href="#" class="download-btn google-play" aria-label="Baixar na Google Play">
+            <span class="store-logo">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M3.063 3.627v16.747c0 .54.442.977.987.977h16.762c.545 0 .987-.438.987-.977V3.627c0-.54-.442-.977-.987-.977H4.05c-.545 0-.987.438-.987.977zm16.762 1.955H4.05v14.836h15.775V5.582zM12 7.174l3.482 3.482-3.482 3.482-3.482-3.482L12 7.174zm-4.468 2.495l3.482 3.482-3.482 3.482V9.669zm8.936 0v7.413l-3.482-3.482 3.482-3.482z"/>
+              </svg>
+            </span>
+            <span class="store-info">
+              <span class="available-on">Disponível no</span>
+              <span class="store-name">Google Play</span>
+            </span>
+          </a>
 
-    <a href="#" class="download-btn app-store" aria-label="Baixar na App Store">
-      <span class="store-logo">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-        </svg>
-      </span>
-      <span class="store-info">
-        <span class="available-on">Baixe na</span>
-        <span class="store-name">App Store</span>
-      </span>
-    </a>
-  </div>
-</div>
-
-
+          <a href="#" class="download-btn app-store" aria-label="Baixar na App Store">
+            <span class="store-logo">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+              </svg>
+            </span>
+            <span class="store-info">
+              <span class="available-on">Baixe na</span>
+              <span class="store-name">App Store</span>
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -169,19 +165,84 @@
       <a href="/cadastro" class="btn btn-premium">Assinar Premium</a>
     </div>
   </div>
-  
 </section>
 
 <!-- FAQ -->
-<section class="faq" aria-labelledby="faq-heading">
-  <h2 id="faq-heading">Dúvidas frequentes</h2>
-  <div class="faq-item">
-    <button class="faq-pergunta" aria-expanded="false" aria-controls="faq-resposta-1">Como cancelo assinaturas através do app?</button>
-    <div class="faq-resposta" id="faq-resposta-1">
-      <p>O Recora ajuda você a identificar e cancelar assinaturas não desejadas diretamente pelos provedores.</p>
+<section aria-labelledby="faq-title">
+  <h2 id="faq-title">PERGUNTAS FREQUENTES</h2>
+
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button 
+          class="accordion-button" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapseOne" 
+          aria-expanded="true" 
+          aria-controls="collapseOne">
+          Como faço para cancelar minha assinatura pelo app?
+        </button>
+      </h2>
+      <div 
+        id="collapseOne" 
+        class="accordion-collapse collapse show" 
+        aria-labelledby="headingOne" 
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Você pode cancelar assinaturas diretamente pelo app acessando a seção "Minhas Assinaturas" e selecionando o botão "Cancelar" na assinatura desejada.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button 
+          class="accordion-button collapsed" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapseTwo" 
+          aria-expanded="false" 
+          aria-controls="collapseTwo">
+          O app possui versão gratuita?
+        </button>
+      </h2>
+      <div 
+        id="collapseTwo" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="headingTwo" 
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Sim! O app oferece funcionalidades gratuitas para gerenciamento básico das suas assinaturas e notificações.
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <button 
+          class="accordion-button collapsed" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapseThree" 
+          aria-expanded="false" 
+          aria-controls="collapseThree">
+          Posso receber alertas de cobrança?
+        </button>
+      </h2>
+      <div 
+        id="collapseThree" 
+        class="accordion-collapse collapse" 
+        aria-labelledby="headingThree" 
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          Sim, você pode ativar notificações para receber alertas antes das próximas cobranças das suas assinaturas.
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
 
 <!-- CTA Final -->
 <section class="cta-final" aria-labelledby="cta-final-heading">
@@ -215,23 +276,9 @@
       </div>
     </div>
   </div>
-  <div class="footer-newsletter">
-    <h4>Receba dicas de economia</h4>
-    <form action="/newsletter" method="POST">
-      @csrf
-      <label for="newsletter-email" class="visually-hidden">Seu melhor e-mail</label>
-      <input type="email" id="newsletter-email" name="email" placeholder="Seu melhor e-mail" required>
-      <button type="submit">Assinar</button>
-    </form>
-  </div>
+
   <div class="footer-copyright">
     <p>© 2025 Recora. Todos os direitos reservados.</p>
-    <div class="footer-social">
-      <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-      <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
-    </div>
-  </div>
 </footer>
 
 <!-- Botão flutuante -->

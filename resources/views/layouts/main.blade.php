@@ -28,6 +28,14 @@
     <!-- JS -->
     <script src="{{ asset('js/javascript.js') }}"></script>
 
+
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JS Bundle (inclui Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
     @yield('styles')
     @yield('head-scripts')
 </head>
@@ -42,22 +50,24 @@
     
 
     {{-- Rodapé padrão --}}
+    @if (empty($hideFooter))
     @hasSection('footer')
-    @yield('footer')
+        @yield('footer')
     @else
-    <footer class="site-footer">
-        <div class="footer-top">
-            <p class="footer-copy">
-                Copyright © {{ date('Y') }}
-            </p>
-        </div>
-        <div class="footer-bottom">
-            <p>
-                Recora | (19) 3885-1923 • (19) 99269-1700 | Rua Dom Pedro I, 65 – Cidade Nova | CEP 13334-100
-            </p>
-        </div>
-    </footer>
+        <footer class="site-footer">
+            <div class="footer-top">
+                <p class="footer-copy">
+                    Copyright © {{ date('Y') }}
+                </p>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    Recora | (19) 3885-1923 • (19) 99269-1700 | Rua Dom Pedro I, 65 – Cidade Nova | CEP 13334-100
+                </p>
+            </div>
+        </footer>
     @endif
+@endif
 
     @yield('scripts')
 </body>

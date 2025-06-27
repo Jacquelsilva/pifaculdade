@@ -45,6 +45,7 @@ class ContaconfigController extends Controller
         session([
             'configuracao.tema' => $validated['tema'],
             'configuracao.idioma' => $validated['idioma'],
+            'idioma' => $validated['idioma'],
         ]);
 
         // Redireciona com mensagem de sucesso

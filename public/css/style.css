@@ -38,6 +38,8 @@ html,
 body {
   background-color: var(--fundo);
   color: var(--texto);
+  overflow-x: hidden;
+
 }
 
 a {
@@ -272,6 +274,8 @@ form button[type="submit"] {
   text-align: center;
 }
 /* Link de cadastro */
+
+
 .register-link {
   text-align: center;
   margin-top: 25px;
@@ -311,7 +315,7 @@ form button[type="submit"] {
 /* Barra de Navegação */
 
 .navbar {
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   right: 0;
@@ -359,7 +363,8 @@ form button[type="submit"] {
 
 
 /* CSS INICIO*/
-/* Seção Hero */
+
+
 .logo p {
   color: #033B96;
   font-size: 24px;
@@ -427,58 +432,40 @@ form button[type="submit"] {
 .container {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 40px 20px;
+  gap: 2rem;
 }
 
+/* Texto à esquerda */
 .texto {
-   flex: 1 1 50%;
-  padding-right: 20px;
+  flex: 1 1 400px; /* cresce, encolhe e largura mínima */
+  min-width: 300px;
 }
 
+/* Imagem à direita */
 .imagem {
-  flex: 1 1 40%;
-  text-align: right;
+  flex: 1 1 300px;
+  min-width: 250px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .imagem img {
   max-width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 60px 20px 30px;
-  }
-
-  .hero-text,
-  .hero-img,
-  .texto,
-  .imagem {
-    max-width: 100%;
-    flex: 1 1 100%;
-  }
-
-  .hero-text h1,
-  .texto h1 {
-    font-size: 2em;
-  }
-
-  .hero-text p,
-  .texto p {
-    font-size: 1em;
-  }
-
-  .imagem img {
-    max-width: 90%;
-    margin-top: 20px;
-  }
+/* Back-button abaixo dos dois, centralizado */
+.back-button {
+  width: 100%;
+  text-align: center;
+  margin-top: 1.5rem;
 }
+
+
+
 
 /*CSS página Contato*/
 
@@ -606,47 +593,68 @@ form button[type="submit"] {
 
 
 /* faq.css */
-.faq {
-  padding: 5rem 5%;
-}
 
-.faq-item {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+#faq-title{
+  text-align: center;
 }
-
-.faq-pergunta {
-  width: 100%;
-  text-align: left;
-  padding: 1.5rem 0;
-  background: none;
-  border: none;
-  font-size: 1.1rem;
+.accordion-button {
   font-weight: 600;
-  color: var(--dark);
-  cursor: pointer;
+  font-size: 1.1rem;
+  color: #222;
+  background-color: #020202;
+  border-radius: 0.25rem;
+  padding-left: 2.5rem;
+  position: relative;
+
+  /* Usar flex para alinhar itens */
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 0.75rem; /* espaço entre seta e texto */
 }
 
-.faq-pergunta::after {
-  content: '+';
+/* Removemos o ::after para controlar seta manualmente */
+.accordion-button::after {
+  content: none;
+}
+
+/* Criar a seta como um elemento flex à esquerda */
+.accordion-button::before {
+  content: "+";
   font-size: 1.5rem;
-  color: var(--primary);
+  font-weight: bold;
+  color: #007bff;
+  flex-shrink: 0;
+  width: 1.25em;
+  text-align: center;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.faq-pergunta.active::after {
-  content: '-';
+/* Quando aberto, mudar o conteúdo e cor da seta */
+.accordion-button:not(.collapsed)::before {
+  content: "−"; /* sinal de menos */
+  color: #dc3545;
 }
 
-.faq-resposta {
-  padding: 0 0 1.5rem;
-  display: none;
+/* Remover borda padrão e sombreamento */
+.accordion-item {
+  border: none;
+  margin-bottom: 0.5rem;
 }
 
-.faq-resposta.active {
-  display: block;
+/* Fundo da resposta */
+.accordion-body {
+  background-color: #fff;
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-left: 3rem;
+  border-left: 3px solid #007bff;
+}
+
+/* Container do accordion para ficar menor e centralizado */
+#accordionExample {
+  max-width: 600px;
+  margin: 2rem auto;
 }
 
 
@@ -861,6 +869,7 @@ form button[type="submit"] {
   padding: 50px 20px;
   background-color: #f0f4ff;
   text-align: center;
+  color: #000;
 }
 
 .depoimento-lista {
@@ -881,6 +890,7 @@ form button[type="submit"] {
 
 .depoimento p {
   font-style: italic;
+  color: #000 !important;
 }
 
 .depoimento span {
@@ -921,8 +931,22 @@ form button[type="submit"] {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Cadastro */
-/* Estilo da seta de voltar */
+
+
 .back-arrow {
   position: absolute;
   top: 20px;
@@ -934,11 +958,7 @@ form button[type="submit"] {
 }
 
 /* reset básico */
-html,
-body {
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
+
 
 .register-wrapper {
   position: relative;
@@ -1076,7 +1096,25 @@ body {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Home */
+
+
+
 
 .dashboard {
   display: flex;
@@ -1174,11 +1212,6 @@ nav ul li a i {
   margin-left: 300px;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -1204,41 +1237,7 @@ header {
   color: #3498db;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
-}
 
-.card {
-  height: 150px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.blue {
-  background-color: #3498db;
-}
-
-.red {
-  background-color: #e74c3c;
-}
-
-.add {
-  background-color: #2ecc71;
-  font-size: 2rem;
-}
 
 /* Estilos para mobile */
 @media (max-width: 768px) {
@@ -1285,6 +1284,25 @@ header {
 a {
   text-transform: uppercase;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* saiba mais*/
 
@@ -1453,6 +1471,24 @@ a {
   text-decoration: none;
   color: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1673,11 +1709,7 @@ a {
 }
 
 
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 2rem;
-}
+
 
 .content {
   max-width: 900px;
@@ -1728,6 +1760,8 @@ body {
   background-color: #e74c3c;
 }
 
+
+
 /* Modais */
 .modal-buttons {
   display: flex;
@@ -1764,31 +1798,7 @@ select {
   width: 100%;
 }
 
-#addInfoBtn,
-#saveEditBtn,
-#cancelEditBtn,
-#editCardBtn,
-#closeViewBtn,
-#createCardBtn,
-#cancelCreate {
-  margin-top: 10px;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
 
-/* #addInfoBtn:hover,
-#saveEditBtn:hover,
-#cancelEditBtn:hover,
-#editCardBtn:hover,
-#closeViewBtn:hover,
-#createCardBtn:hover,
-#cancelCreate:hover {
-  background-color: #5a4bcf;
-} */
 
 .remove-info {
   background: #d63031;
@@ -1882,7 +1892,7 @@ select {
 
 /* Footer Styles */
 .footer {
-  margin-top: 50px;
+  margin-top: 100px;
   background-color: #033b96;
   color: #ecf0f1;
   padding: 3rem 1rem 1rem;
@@ -1901,7 +1911,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  justify-content: space-between;
+
 }
 
 .footer-col {
@@ -1984,30 +1994,8 @@ select {
   background-color: #2980b9;
 }
 
-.footer-copyright {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 1.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  color: #bdc3c7;
-  font-size: 0.9rem;
-}
-
-.footer-social {
-  display: flex;
-  gap: 1rem;
-}
-
-.footer-social a {
-  color: #bdc3c7;
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
-}
-
-.footer-social a:hover {
-  color: #3498db;
+.footer-copyright{
+  text-align: center !important;
 }
 
 .visually-hidden {
@@ -2238,3 +2226,44 @@ input[type="password"]:focus {
 }
 
 
+
+
+
+/*cards*/
+.modal {
+  background: rgba(0,0,0,0.4);
+  color: #000;
+}
+
+.modal-content {
+  background: #ffffff;
+  color: #222222;
+}
+
+button {
+  background-color: #3498db; /* azul */
+  color: rgb(0, 0, 0);
+  border: none;
+}
+
+input, textarea {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  color: #333;
+}
+#cardInfoView {
+  color: black;
+}
+
+
+textarea.subcategoria {
+  height: 200px;      /* altura fixa */
+  overflow-y: auto;   /* rolagem aparece quando ultrapassar */
+  resize: none;       /* evita redimensionar */
+}
+
+#viewModal, 
+#viewModal .modal-content, 
+#viewModal * {
+  color: black !important;
+}

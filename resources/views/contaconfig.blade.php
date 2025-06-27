@@ -1,8 +1,15 @@
+
 @extends('layouts.dash-container')
 
-@section('title', __('mensagens.config'))
+
+@section('title', __('mensagens.configuracoes'))
+
 
 @section('content')
+
+
+
+
 <div class="container-config">
 <div class="grid">
 

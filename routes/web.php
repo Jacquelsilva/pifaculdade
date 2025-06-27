@@ -19,6 +19,7 @@ use App\Http\Controllers\PrivacidadeController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\TermosController;
 use App\Http\Controllers\SuporteController;
+use App\Http\Controllers\CardController;
 
 // Auth Controllers
 use App\Http\Controllers\Auth\LoginController;
@@ -71,5 +72,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/configuracao/conta/salvar', [ContaconfigController::class, 'salvarConta'])->name('contaconfig.salvarConta');
 
 });
+
+//cards
+Route::get('/cards', [CardController::class, 'index']);
+Route::post('/cards', [CardController::class, 'store']);
+Route::post('/cards/{id}/update', [CardController::class, 'update']);
 
 
