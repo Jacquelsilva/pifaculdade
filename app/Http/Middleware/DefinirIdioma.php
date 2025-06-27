@@ -12,6 +12,7 @@ class DefinirIdioma
     {
         $idioma = Session::get('configuracao.idioma', 'pt');
         App::setLocale($idioma);
+        dd('Idioma da sessão: ' . $idioma, 'Locale atual: ' . App::getLocale());
         return $next($request);
     }
 }

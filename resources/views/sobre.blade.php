@@ -1,20 +1,20 @@
-@extends('layouts.main')
+@extends('layouts.main', ['hideFooter' => true])
 
 @section('title', 'sobre')
 
 @section('content')
 
-<nav class="navbar" aria-label="Navegação principal">
-  <div class="logo">
-  <p>
-  <img src="{{ asset('img/logonovomenor.png') }}" alt="Ícone do Recora" width="15" height="15">
-  </p>
-</div>
-</nav>
-
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="container"> <!-- aqui, container que controla o layout flex -->
-    <div class="texto hero-text"> <!-- coloque a classe texto junto com hero-text -->
+  <div class="container"> <!-- container que controla o layout flex -->
+
+    <!-- Botão Voltar -->
+    <div class="back-button" style="margin-bottom: 1rem;">
+      <a href="{{ url('/inicio') }}" class="btn btn-secondary" aria-label="Voltar à página inicial">
+        ← Voltar
+      </a>
+    </div>
+
+    <div class="texto hero-text"> <!-- classe texto junto com hero-text -->
       <h1>Sobre Nós</h1>
       <p>Somos uma equipe de estudantes do segundo semestre da Faculdade de Tecnologia de Indaiatuba, unidos pelo interesse comum em desenvolvimento web, inovação e soluções que fazem a diferença. </p>
       <p>O Recora nasceu como parte do nosso projeto de conclusão de semestre e representa o nosso esforço coletivo para aplicar na prática os conhecimentos adquiridos até aqui.</p>
@@ -29,8 +29,7 @@
     </div>
 
     <div class="imagem">
-      <img src="{{ asset('img/gruporecorte.jpeg') }}" alt="Foto do grupo lindo" loading="lazy"
-      >
+      <img src="{{ asset('img/gruporecorte.jpeg') }}" alt="Foto do grupo lindo" loading="lazy">
     </div>
   </div>
 </section>

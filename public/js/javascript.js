@@ -24,320 +24,403 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('resize', handleMobileMenu);
 });
 
-// Dentro do DOMContentLoaded
-document.addEventListener("DOMContentLoaded", () => {
-  const cardsContainer     = document.getElementById("cardsContainer");
-  const createCardModal    = document.getElementById("createCardModal");
-  const viewModal          = document.getElementById("viewModal");
-  const editModal          = document.getElementById("editModal");
 
-  const createCardBtn      = document.getElementById("createCardBtn");
-  const cancelCreate       = document.getElementById("cancelCreate");
-  const cardNameInput      = document.getElementById("cardName");
-  const cardColorInput     = document.getElementById("cardColor");
-  const addCard            = document.getElementById("addCard");
 
-  const cardInfoView       = document.getElementById("cardInfoView");
-  const editCardBtn        = document.getElementById("editCardBtn");
-  const closeViewBtn       = document.getElementById("closeViewBtn");
 
-  const infoContainer      = document.getElementById("infoContainer");
-  const addInfoBtn         = document.getElementById("addInfoBtn");
-  const editTotalValue     = document.getElementById("editTotalValue");
-  const editCardDescription= document.getElementById("editCardDescription");
+/* FAC */
 
-  const saveEditBtn        = document.getElementById("saveEditBtn");
-  const cancelEditBtn      = document.getElementById("cancelEditBtn");
+ document.addEventListener('DOMContentLoaded', () => {
+  const accordion = document.getElementById('accordionFlushExample');
+  const buttons = accordion.querySelectorAll('.accordion-button');
 
-  const addSubCardBtn      = document.getElementById("addSubCardBtn");
-  const subCardContainer   = document.getElementById("subCardContainer");
-
-  let currentCard = null;
-
-  // Criar nova categoria principal
-  addCard.addEventListener("click", () => {
-    cardNameInput.value = "";
-    cardColorInput.value = "#6c5ce7";
-    createCardModal.classList.remove("hidden");
-  });
-
-  cancelCreate.addEventListener("click", () => {
-    createCardModal.classList.add("hidden");
-  });
-
-  createCardBtn.addEventListener("click", () => {
-    const name  = cardNameInput.value.trim();
-    const color = cardColorInput.value;
-
-    if (!name) return alert("Nome do card é obrigatório");
-
-    const cardData = {
-      name,
-      color,
-      description: "",
-      valores: [],
-      subcategorias: []
-    };
-
-    const card = document.createElement("div");
-    card.className = "card";
-    card.style.backgroundColor = color;
-    card.textContent = name;
-    card.dataset.info = JSON.stringify(cardData);
-    card.addEventListener("click", () => openViewModal(card));
-
-    cardsContainer.insertBefore(card, addCard);
-    createCardModal.classList.add("hidden");
-
-    card.addEventListener("click", () => openViewModal(card));
-  });
-
-  function openViewModal(card) {
-    currentCard = card;
-    const data = JSON.parse(card.dataset.info);
-    let html = `<strong>Nome:</strong> ${data.name}<br>`;
-
-    if (data.description) {
-      html += `<strong>Descrição:</strong> ${data.description}<br>`;
-    }
-
-    if (data.valores.length) {
-      let total = 0;
-      html += "<strong>Valores:</strong><ul>";
-      data.valores.forEach(v => {
-        html += `<li>${v.mes}: R$ ${parseFloat(v.valor).toFixed(2)}</li>`;
-        total += parseFloat(v.valor);
-      });
-      html += `</ul><strong>Total:</strong> R$ ${total.toFixed(2)}<br>`;
-    }
-
-    if (data.subcategorias.length) {
-      html += "<strong>Subcategorias:</strong><ul>";
-      data.subcategorias.forEach(sub => {
-        html += `<li><em>${sub.descricao}</em><ul>`;
-        sub.valores.forEach(v => {
-          html += `<li>${v.mes}: R$ ${parseFloat(v.valor).toFixed(2)}</li>`;
-        });
-        const subTotal = sub.valores.reduce((sum, v) => sum + parseFloat(v.valor), 0);
-        html += `</ul>Total Sub: R$ ${subTotal.toFixed(2)}</li>`;
-      });
-      html += "</ul>";
-    }
-
-    cardInfoView.innerHTML = html;
-    viewModal.classList.remove("hidden");
-  }
-
-  closeViewBtn.addEventListener("click", () => {
-    viewModal.classList.add("hidden");
-  });
-  
-
-  editCardBtn.addEventListener("click", () => {
-    const data = JSON.parse(currentCard.dataset.info);
-    infoContainer.innerHTML = "";
-    subCardContainer.innerHTML = "";
-
-    editCardDescription.value = data.description;
-    data.valores.forEach(({ mes, valor }) => addInfoField(mes, valor));
-    data.subcategorias.forEach(sub => {
-      const subBox = createSubCard(sub.descricao, sub.valores);
-      subCardContainer.appendChild(subBox);
-    });
-
-    updateEditTotal();
-    viewModal.classList.add("hidden");
-    editModal.classList.remove("hidden");
-  });
-
-  cancelEditBtn.addEventListener("click", () => {
-    editModal.classList.add("hidden");
-  });
-
-  saveEditBtn.addEventListener("click", () => {
-    const valores = [];
-    infoContainer.querySelectorAll(".info-group").forEach(group => {
-      const mes   = group.querySelector("select").value;
-      const valor = parseFloat(group.querySelector("input").value) || 0;
-      if (mes) valores.push({ mes, valor });
-    });
-
-    const subcategorias = [];
-    subCardContainer.querySelectorAll(".subcard-box").forEach(box => {
-      const descricao = box.querySelector("textarea").value.trim();
-      const vals = [];
-      box.querySelectorAll(".info-group").forEach(g => {
-        vals.push({
-          mes: g.querySelector("select").value,
-          valor: parseFloat(g.querySelector("input").value) || 0
-        });
-      });
-      subcategorias.push({ descricao, valores: vals });
-    });
-
-    const data = JSON.parse(currentCard.dataset.info);
-    data.description    = editCardDescription.value.trim();
-    data.valores        = valores;
-    data.subcategorias  = subcategorias;
-    currentCard.dataset.info = JSON.stringify(data);
-
-    // Atualizar o texto do card (nome)
-    currentCard.textContent = data.name || currentCard.textContent;
-
-    // Atualizar a cor, se quiser permitir edição da cor no futuro
-    // currentCard.style.backgroundColor = data.color || currentCard.style.backgroundColor;
-
-    editModal.classList.add("hidden");
-
-    // Reabrir modal de visualização com os dados atualizados
-    openViewModal(currentCard);
-  });
-
-  addInfoBtn.addEventListener("click", () => addInfoField());
-
-  function addInfoField(mes = "", valor = "") {
-    const group = document.createElement("div");
-    group.className = "info-group";
-
-    const select = document.createElement("select");
-    ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-     "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
-      .forEach(m => {
-        const opt = document.createElement("option");
-        opt.value = opt.textContent = m;
-        if (m === mes) opt.selected = true;
-        select.appendChild(opt);
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      // Fecha todos
+      buttons.forEach(btn => {
+        btn.classList.add('collapsed');
+        btn.setAttribute('aria-expanded', 'false');
+        const targetId = btn.getAttribute('data-bs-target').slice(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) targetEl.classList.remove('show');
       });
 
-    const input = document.createElement("input");
-    input.type = "number";
-    input.placeholder = "Valor";
-    input.value = valor;
-    input.addEventListener("input", updateEditTotal);
-
-    const removeBtn = document.createElement("button");
-    removeBtn.type = "button";
-    removeBtn.className = "remove-info";
-    removeBtn.textContent = "X";
-    removeBtn.addEventListener("click", () => {
-      group.remove();
-      updateEditTotal();
+      // Se não estava expandido, abre o clicado
+      if (!expanded) {
+        button.classList.remove('collapsed');
+        button.setAttribute('aria-expanded', 'true');
+        const targetId = button.getAttribute('data-bs-target').slice(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) targetEl.classList.add('show');
+      }
     });
-
-    group.appendChild(select);
-    group.appendChild(input);
-    group.appendChild(removeBtn);
-    infoContainer.appendChild(group);
-  }
-
-  function updateEditTotal() {
-    let tot = 0;
-    infoContainer.querySelectorAll("input[type='number']").forEach(i => {
-      const v = parseFloat(i.value);
-      if (!isNaN(v)) tot += v;
-    });
-    editTotalValue.textContent = tot.toFixed(2);
-  }
-
-  addSubCardBtn.addEventListener("click", () => {
-    const subBox = createSubCard();
-    subCardContainer.appendChild(subBox);
   });
-
-  function createSubCard(descValue = "", valores = []) {
-    const container = document.createElement("div");
-    container.className = "subcard-box";
-    container.style.cssText = "border:1px solid #ccc;padding:10px;margin-top:10px;border-radius:6px;background:#f8f9fa";
-
-    const desc = document.createElement("textarea");
-    desc.placeholder = "Descrição da Subcategoria";
-    desc.rows = 2;
-    desc.style.width = "100%";
-    desc.style.marginBottom = "10px";
-    desc.value = descValue;
-
-    const subInfo = document.createElement("div");
-
-    const totalDisplay = document.createElement("p");
-    totalDisplay.innerHTML = `<strong>Total Subcategoria:</strong> R$ <span>0.00</span>`;
-
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.textContent = "+ Adicionar Mês/Valor";
-    btn.style.marginBottom = "10px";
-    btn.addEventListener("click", () => {
-      const g = document.createElement("div");
-      g.className = "info-group";
-
-      const sel = document.createElement("select");
-      ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-       "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
-        .forEach(m => {
-          const o = document.createElement("option");
-          o.value = o.textContent = m;
-          sel.appendChild(o);
-        });
-
-      const inp = document.createElement("input");
-      inp.type = "number";
-      inp.placeholder = "Valor";
-      inp.addEventListener("input", updateSubTotal);
-
-      const rem = document.createElement("button");
-      rem.type = "button";
-      rem.textContent = "X";
-      rem.className = "remove-info";
-      rem.addEventListener("click", () => {
-        g.remove();
-        updateSubTotal();
-      });
-
-      g.appendChild(sel);
-      g.appendChild(inp);
-      g.appendChild(rem);
-      subInfo.appendChild(g);
-      updateSubTotal();
-    });
-
-    function updateSubTotal() {
-      let t = 0;
-      subInfo.querySelectorAll("input[type='number']").forEach(i => {
-        const v = parseFloat(i.value);
-        if (!isNaN(v)) t += v;
-      });
-      totalDisplay.querySelector("span").textContent = t.toFixed(2);
-    }
-
-    valores.forEach(v => {
-      btn.click();
-      const last = subInfo.lastElementChild;
-      last.querySelector("select").value = v.mes;
-      last.querySelector("input").value  = v.valor;
-    });
-    updateSubTotal();
-
-    container.appendChild(desc);
-    container.appendChild(subInfo);
-    container.appendChild(btn);
-    container.appendChild(totalDisplay);
-    return container;
-  }
 });
 
 
 
+/*cards*/
 
-/*Editar conta*/
-const temaServidor = document.documentElement.className || 'claro';
-localStorage.setItem('tema', temaServidor);
-const idiomaServidor = document.getElementById('selectIdioma').value || 'pt';
-localStorage.setItem('idioma', idiomaServidor);
 
-const temaSalvo = localStorage.getItem('tema');
-const idiomaSalvo = localStorage.getItem('idioma');
+document.addEventListener('DOMContentLoaded', () => {
+  // Elements
+  const addCardBtn = document.getElementById('addCard');
+  const createCardModal = document.getElementById('createCardModal');
+  const cancelCreateBtn = document.getElementById('cancelCreate');
+  const createCardBtn = document.getElementById('createCardBtn');
+  const cardNameInput = document.getElementById('cardNameInput');
+  const cardColorInput = document.getElementById('cardColorInput');
+  const cardsContainer = document.getElementById('cardsContainer');
 
-selectTema.value = temaSalvo;
-selectIdioma.value = idiomaSalvo;
+  const viewModal = document.getElementById('viewModal');
+  const cardInfoView = document.getElementById('cardInfoView');
+  const closeViewBtn = document.getElementById('closeViewBtn');
+  const editCardBtn = document.getElementById('editCardBtn');
 
-aplicarTema(temaSalvo);
-aplicarIdioma(idiomaSalvo);
+  const editModal = document.getElementById('editModal');
+  const editCardDescription = document.getElementById('editCardDescription');
+  const infoContainer = document.getElementById('infoContainer');
+  const addInfoBtn = document.getElementById('addInfoBtn');
+  const addSubCardBtn = document.getElementById('addSubCardBtn');
+  const subCardContainer = document.getElementById('subCardContainer');
+  const editTotalValue = document.getElementById('editTotalValue');
+  const saveEditBtn = document.getElementById('saveEditBtn');
+  const cancelEditBtn = document.getElementById('cancelEditBtn');
+  const editCardForm = document.getElementById('editCardForm');
+
+  let cards = [];
+  let currentCardId = null;
+
+  function openModal(modal) {
+    modal.classList.remove('hidden');
+  }
+  function closeModal(modal) {
+    modal.classList.add('hidden');
+  }
+
+  addCardBtn.addEventListener('click', () => {
+    cardNameInput.value = '';
+    cardColorInput.value = '#6c5ce7';
+    openModal(createCardModal);
+  });
+
+  cancelCreateBtn.addEventListener('click', () => {
+    closeModal(createCardModal);
+  });
+
+  createCardBtn.addEventListener('click', () => {
+    const name = cardNameInput.value.trim();
+    const color = cardColorInput.value;
+
+    if (!name) {
+      alert('Digite o nome do card');
+      return;
+    }
+
+    const id = Date.now().toString();
+    const newCard = {
+      id,
+      name,
+      color,
+      description: '',
+      infos: [],
+      subCards: []
+    };
+    cards.push(newCard);
+    renderCards();
+    closeModal(createCardModal);
+  });
+
+  function renderCards() {
+    // Remove todos os cards exceto botão de adicionar
+    [...cardsContainer.querySelectorAll('.card')].forEach(el => {
+      if (el.id !== 'addCard') el.remove();
+    });
+
+    cards.forEach(card => {
+      const cardEl = document.createElement('div');
+      cardEl.classList.add('card', 'flex', 'items-center', 'justify-center', 'aspect-square', 'rounded-lg', 'text-white', 'cursor-pointer');
+      cardEl.style.backgroundColor = card.color;
+      cardEl.textContent = card.name;
+      cardEl.dataset.id = card.id;
+
+      cardEl.addEventListener('click', () => {
+        currentCardId = card.id;
+        openViewModal(card.id);
+      });
+
+      cardsContainer.insertBefore(cardEl, addCardBtn);
+    });
+  }
+
+  function openViewModal(cardId) {
+    const card = cards.find(c => c.id === cardId);
+    if (!card) return;
+
+    let html = `<p><strong>Nome:</strong> ${card.name}</p>`;
+    html += `<p><strong>Descrição:</strong> ${card.description || '(sem descrição)'}</p>`;
+
+    if (card.infos.length > 0) {
+      html += '<p><strong>Mês e Valores:</strong></p><ul>';
+      card.infos.forEach(info => {
+        html += `<li>${info.month}: R$ ${parseFloat(info.value).toFixed(2)}</li>`;
+      });
+      html += '</ul>';
+
+      const total = card.infos.reduce((sum, i) => sum + parseFloat(i.value), 0);
+      html += `<p><strong>Total:</strong> R$ ${total.toFixed(2)}</p>`;
+    } else {
+      html += '<p>(Sem mês/valor)</p>';
+    }
+
+    if (card.subCards.length > 0) {
+      html += '<p><strong>Subcategorias:</strong></p><ul>';
+      card.subCards.forEach(sc => {
+        html += `<li>${sc.name} - ${sc.description || '(sem descrição)'}</li>`;
+      });
+      html += '</ul>';
+    }
+
+    cardInfoView.innerHTML = html;
+    openModal(viewModal);
+  }
+
+  closeViewBtn.addEventListener('click', () => {
+    closeModal(viewModal);
+  });
+
+  editCardBtn.addEventListener('click', () => {
+    closeModal(viewModal);
+    openEditModal(currentCardId);
+  });
+
+  function openEditModal(cardId) {
+    const card = cards.find(c => c.id === cardId);
+    if (!card) return;
+
+    editCardDescription.value = card.description || '';
+
+    // Limpa containers antes de adicionar os campos existentes
+    infoContainer.innerHTML = '';
+    subCardContainer.innerHTML = '';
+
+    card.infos.forEach(info => addInfoRow(info.month, info.value));
+    card.subCards.forEach(sc => addSubCardRow(sc));
+
+    updateTotal();
+    openModal(editModal);
+  }
+
+  cancelEditBtn.addEventListener('click', () => {
+    closeModal(editModal);
+  });
+
+  addInfoBtn.addEventListener('click', () => {
+    addInfoRow();
+  });
+
+  function addInfoRow(month = '', value = '') {
+    const div = document.createElement('div');
+    div.className = 'flex gap-2 mb-2';
+
+    const monthInput = document.createElement('input');
+    monthInput.type = 'text';
+    monthInput.placeholder = 'Mês';
+    monthInput.value = month;
+    monthInput.className = 'border border-gray-300 rounded px-2 py-1 flex-grow';
+
+    const valueInput = document.createElement('input');
+    valueInput.type = 'number';
+    valueInput.min = '0';
+    valueInput.step = '0.01';
+    valueInput.placeholder = 'Valor';
+    valueInput.value = value;
+    valueInput.className = 'border border-gray-300 rounded px-2 py-1 w-24';
+
+    valueInput.addEventListener('input', updateTotal);
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.textContent = 'X';
+    removeBtn.className = 'bg-red-500 text-white px-2 rounded';
+    removeBtn.addEventListener('click', () => {
+      div.remove();
+      updateTotal();
+    });
+
+    div.appendChild(monthInput);
+    div.appendChild(valueInput);
+    div.appendChild(removeBtn);
+
+    infoContainer.appendChild(div);
+  }
+
+  addSubCardBtn.addEventListener('click', () => addSubCardRow());
+
+  function addSubCardRow(subCard = null) {
+    const div = document.createElement('div');
+    div.className = 'subcard border p-2 mb-3 rounded bg-gray-100';
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Nome da Subcategoria';
+    nameInput.value = subCard ? subCard.name : '';
+    nameInput.className = 'border border-gray-300 rounded px-2 py-1 w-full mb-1';
+
+    const descInput = document.createElement('textarea');
+    descInput.placeholder = 'Descrição da Subcategoria';
+    descInput.rows = 2;
+    descInput.value = subCard ? subCard.description : '';
+    descInput.className = 'border border-gray-300 rounded px-2 py-1 w-full mb-1';
+
+    const infosDiv = document.createElement('div');
+    infosDiv.className = 'infos-subcard mb-1';
+
+    if (subCard && subCard.infos) {
+      subCard.infos.forEach(info => {
+        const row = document.createElement('div');
+        row.className = 'flex gap-2 mb-1';
+
+        const monthInput = document.createElement('input');
+        monthInput.type = 'text';
+        monthInput.placeholder = 'Mês';
+        monthInput.value = info.month;
+        monthInput.className = 'border border-gray-300 rounded px-2 py-1 flex-grow';
+
+        const valueInput = document.createElement('input');
+        valueInput.type = 'number';
+        valueInput.min = '0';
+        valueInput.step = '0.01';
+        valueInput.placeholder = 'Valor';
+        valueInput.value = info.value;
+        valueInput.className = 'border border-gray-300 rounded px-2 py-1 w-24';
+
+        valueInput.addEventListener('input', updateTotal);
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.textContent = 'X';
+        removeBtn.className = 'bg-red-500 text-white px-2 rounded';
+        removeBtn.addEventListener('click', () => {
+          row.remove();
+          updateTotal();
+        });
+
+        row.appendChild(monthInput);
+        row.appendChild(valueInput);
+        row.appendChild(removeBtn);
+
+        infosDiv.appendChild(row);
+      });
+    }
+
+    const addInfoSubBtn = document.createElement('button');
+    addInfoSubBtn.type = 'button';
+    addInfoSubBtn.textContent = '+ Adicionar Mês e Valor';
+    addInfoSubBtn.className = 'mb-2 px-3 py-1 rounded bg-blue-600 text-white';
+    addInfoSubBtn.addEventListener('click', () => {
+      const row = document.createElement('div');
+      row.className = 'flex gap-2 mb-1';
+
+      const monthInput = document.createElement('input');
+      monthInput.type = 'text';
+      monthInput.placeholder = 'Mês';
+      monthInput.className = 'border border-gray-300 rounded px-2 py-1 flex-grow';
+
+      const valueInput = document.createElement('input');
+      valueInput.type = 'number';
+      valueInput.min = '0';
+      valueInput.step = '0.01';
+      valueInput.placeholder = 'Valor';
+      valueInput.className = 'border border-gray-300 rounded px-2 py-1 w-24';
+      valueInput.addEventListener('input', updateTotal);
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.textContent = 'X';
+      removeBtn.className = 'bg-red-500 text-white px-2 rounded';
+      removeBtn.addEventListener('click', () => {
+        row.remove();
+        updateTotal();
+      });
+
+      row.appendChild(monthInput);
+      row.appendChild(valueInput);
+      row.appendChild(removeBtn);
+
+      infosDiv.appendChild(row);
+    });
+
+    div.appendChild(nameInput);
+    div.appendChild(descInput);
+    div.appendChild(infosDiv);
+    div.appendChild(addInfoSubBtn);
+
+    subCardContainer.appendChild(div);
+  }
+
+  function updateTotal() {
+    let total = 0;
+
+    [...infoContainer.querySelectorAll('input[type="number"]')].forEach(input => {
+      const val = parseFloat(input.value);
+      if (!isNaN(val)) total += val;
+    });
+
+    [...subCardContainer.querySelectorAll('.infos-subcard input[type="number"]')].forEach(input => {
+      const val = parseFloat(input.value);
+      if (!isNaN(val)) total += val;
+    });
+
+    editTotalValue.textContent = total.toFixed(2).replace('.', ',');
+  }
+
+  saveEditBtn.addEventListener('click', () => {
+    if (!currentCardId) return;
+
+    const card = cards.find(c => c.id === currentCardId);
+    if (!card) return;
+
+    card.description = editCardDescription.value;
+
+    // Atualiza infos principais
+    card.infos = [];
+    [...infoContainer.children].forEach(div => {
+      const inputs = div.querySelectorAll('input');
+      if (inputs.length >= 2) {
+        const month = inputs[0].value.trim();
+        const value = inputs[1].value.trim();
+        if (month && value) card.infos.push({ month, value });
+      }
+    });
+
+    // Atualiza subcards
+    card.subCards = [];
+    [...subCardContainer.children].forEach(div => {
+      const inputs = div.querySelectorAll('input, textarea');
+      if (inputs.length >= 3) {
+        const name = inputs[0].value.trim();
+        const description = inputs[1].value.trim();
+
+        const infos = [];
+        const infosDiv = div.querySelector('.infos-subcard');
+        if (infosDiv) {
+          [...infosDiv.children].forEach(row => {
+            const rowInputs = row.querySelectorAll('input');
+            if (rowInputs.length >= 2) {
+              const month = rowInputs[0].value.trim();
+              const value = rowInputs[1].value.trim();
+              if (month && value) infos.push({ month, value });
+            }
+          });
+        }
+        if (name) {
+          card.subCards.push({ name, description, infos });
+        }
+      }
+    });
+
+    renderCards();
+    closeModal(editModal);
+  });
+});

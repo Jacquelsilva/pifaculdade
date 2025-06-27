@@ -44,11 +44,6 @@
                     <button type="submit">Entrar</button>
                 </form>
 
-                <p class = "opcao">ou</p>
-                <button class="google-btn">
-                    <i class="fab fa-google"></i> Entrar com Google
-                </button>
-
                 <p class="register-link">
                     Ainda não tem uma conta? <a href="{{ route('cadastro') }}">Cadastre-se</a>
                 </p>
