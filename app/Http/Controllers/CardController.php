@@ -4,65 +4,57 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Card;
+use App\Models\Entrada;
+use Illuminate\Support\Facades\DB;
 
 class CardController extends Controller
 {
-    public function store(Request $request)
+  
+public function index()
+{
+    $cards = Card::with('entradas')->get();
+    return response()->json($cards);
+}
+
+
+    /**
+     * Salva múltiplos cards com entradas.
+     */
+    public function storeLote(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string|max:100',
-            'color' => 'required|string|max:10',
-            'description' => 'nullable|string|max:1000',
-            'infos' => 'nullable|array',
-            'infos.*.month' => 'required|string',
-            'infos.*.value' => 'required|numeric',
-            'subCards' => 'nullable|array',
-            'subCards.*.name' => 'required|string|max:100',
-            'subCards.*.description' => 'nullable|string|max:500',
-            'subCards.*.infos' => 'nullable|array',
-            'subCards.*.infos.*.month' => 'required|string',
-            'subCards.*.infos.*.value' => 'required|numeric',
+            'cards' => 'required|array',
+            'cards.*.descricao' => 'required|string|max:255',
+            'cards.*.color' => 'required|string|max:20',
+            'cards.*.entradas' => 'required|array|min:1',
+            'cards.*.entradas.*.mes' => 'required|string|max:20',
+            'cards.*.entradas.*.valor' => 'required|numeric|min:0',
         ]);
 
-        $card = Card::create([
-            'name' => $data['name'],
-            'color' => $data['color'],
-            'description' => $data['description'] ?? '',
-            'infos' => $data['infos'] ?? [],
-            'sub_cards' => $data['subCards'] ?? [],
-        ]);
+        DB::beginTransaction();
 
-        return response()->json(['success' => true, 'card' => $card]);
-    }
+        try {
+            foreach ($data['cards'] as $cardData) {
+                $card = Card::create([
+                    'descricao' => $cardData['descricao'],
+                    'color' => $cardData['color'],
+                ]);
 
-    public function update(Request $request, $id)
-    {
-        $card = Card::findOrFail($id);
+                foreach ($cardData['entradas'] as $entradaData) {
+                    $card->entradas()->create([
+                        'mes' => $entradaData['mes'],
+                        'valor' => $entradaData['valor'],
+                    ]);
+                }
+            }
 
-        $data = $request->validate([
-            'description' => 'nullable|string|max:1000',
-            'infos' => 'nullable|array',
-            'infos.*.month' => 'required|string',
-            'infos.*.value' => 'required|numeric',
-            'subCards' => 'nullable|array',
-            'subCards.*.name' => 'required|string|max:100',
-            'subCards.*.description' => 'nullable|string|max:500',
-            'subCards.*.infos' => 'nullable|array',
-            'subCards.*.infos.*.month' => 'required|string',
-            'subCards.*.infos.*.value' => 'required|numeric',
-        ]);
+            DB::commit();
 
-        $card->update([
-            'description' => $data['description'] ?? '',
-            'infos' => $data['infos'] ?? [],
-            'sub_cards' => $data['subCards'] ?? [],
-        ]);
+            return response()->json(['message' => 'Cards salvos com sucesso!'], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-        return response()->json(['success' => true]);
-    }
-
-    public function index()
-    {
-        return Card::all(); // Exibe todos os cards
+            return response()->json(['error' => 'Erro ao salvar os cards.', 'details' => $e->getMessage()], 500);
+        }
     }
 }

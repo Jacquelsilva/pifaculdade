@@ -47,22 +47,15 @@
       </div>
     </div>
   </div>
-  <div class="footer-newsletter">
-    <h4>Receba dicas de economia</h4>
-    <form action="/newsletter" method="POST">
-      @csrf
-      <label for="newsletter-email" class="visually-hidden">Seu melhor e-mail</label>
-      <input type="email" id="newsletter-email" name="email" placeholder="Seu melhor e-mail" required>
-      <button type="submit">Assinar</button>
-    </form>
-  </div>
-  <div class="footer-copyright">
-    <p>© 2025 Recora. Todos os direitos reservados.</p>
-    <div class="footer-social">
-      <a href="#" aria-label="Facebook"><i class="bi bi-facebook" aria-hidden="true"></i></a>
-      <a href="#" aria-label="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-      <a href="#" aria-label="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i><a>
-    </div>
-  </div>
+  <!-- Botão flutuante -->
+<a href="/cadastro" class="cta-flutuante" aria-label="Comece agora">
+  <i class="bi bi-plus-lg" aria-hidden="true"></i>
+  <span>Comece agora</span>
+</a>
+
+<a href="/inicio" class="cta-flutuante voltar" aria-label="Voltar para o início">
+  <i class="bi bi-arrow-left" aria-hidden="true"></i>
+  <span>Voltar ao Início</span>
+</a>
 </footer>
 @endsection

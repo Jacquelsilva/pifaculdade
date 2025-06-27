@@ -1,16 +1,18 @@
-<?
+<?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Card extends Model
 {
     protected $fillable = [
-        'name', 'color', 'description', 'infos', 'sub_cards',
+        'descricao', 'color',
     ];
 
-    protected $casts = [
-        'infos' => 'array',
-        'sub_cards' => 'array',
-    ];
+    public function entradas(): HasMany
+    {
+        return $this->hasMany(Entrada::class);
+    }
 }

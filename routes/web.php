@@ -73,9 +73,16 @@ Route::middleware('auth')->group(function () {
 
 });
 
-//cards
+
+
 Route::get('/cards', [CardController::class, 'index']);
 Route::post('/cards', [CardController::class, 'store']);
-Route::post('/cards/{id}/update', [CardController::class, 'update']);
+Route::put('/cards/{id}', [CardController::class, 'update']);
+Route::delete('/cards/{id}', [CardController::class, 'destroy']);
+Route::post('/cards-lote', [CardController::class, 'storeLote']);
+Route::get('/cards', [CardController::class, 'index']);
+
+
+
 
 

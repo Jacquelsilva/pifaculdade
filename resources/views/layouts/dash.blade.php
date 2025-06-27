@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
 
     <title>@yield('title')</title>
 
@@ -20,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <!-- JS -->
     <script src="{{ asset('js/javascript.js') }}"></script>
+
     @yield('styles')
     @yield('head-scripts')
 </head>
@@ -27,7 +27,6 @@
 <body>
 
     {{-- Menu --}}
-
     <aside class="sidebar">
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         <nav>
@@ -52,33 +51,30 @@
     </aside>
 
     {{-- Conteúdo principal --}}
-
     @yield('content')
 
-
-    <!-- <main class="min-h-screen flex justify-center">
-        <section class="py-4 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-6 ">
-        </section>
-    </main> -->
-
-    {{-- Rodapé padrão --}}
-    @hasSection('footer')
-    @yield('footer')
-    @else
-    <footer class="site-footer">
-        <div class="footer-top">
-            <p class="footer-copy">
-                Copyright © {{ date('Y') }}
-            </p>
-        </div>
-        <div class="footer-bottom">
-            <p>
-                Recora | (19) 3885-1923 • (19) 99269-1700 | Rua Dom Pedro I, 65 – Cidade Nova | CEP 13334-100
-            </p>
-        </div>
-    </footer>
+    {{-- Rodapé condicional --}}
+    @if (empty($hideFooter))
+        @hasSection('footer')
+            @yield('footer')
+        @else
+            <footer class="site-footer">
+                <div class="footer-top">
+                    <p class="footer-copy">
+                        Copyright © {{ date('Y') }}
+                    </p>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        Recora | (19) 3885-1923 • (19) 99269-1700 | Rua Dom Pedro I, 65 – Cidade Nova | CEP 13334-100
+                    </p>
+                </div>
+            </footer>
+        @endif
     @endif
 
+    @yield('modals')
+    @stack('scripts')
     @yield('scripts')
 </body>
 

@@ -1,4 +1,4 @@
-@extends('layouts.main', ['hideFooter' => true])
+@extends('layouts.main')
 
 @section('title', 'sobre')
 
@@ -7,12 +7,7 @@
 <section class="hero" aria-labelledby="hero-heading">
   <div class="container"> <!-- container que controla o layout flex -->
 
-    <!-- Botão Voltar -->
-    <div class="back-button" style="margin-bottom: 1rem;">
-      <a href="{{ url('/inicio') }}" class="btn btn-secondary" aria-label="Voltar à página inicial">
-        ← Voltar
-      </a>
-    </div>
+
 
     <div class="texto hero-text"> <!-- classe texto junto com hero-text -->
       <h1>Sobre Nós</h1>
@@ -34,4 +29,40 @@
   </div>
 </section>
 
+@endsection
+
+@section('footer')
+<!-- Footer -->
+<footer class="footer" aria-label="Rodapé">
+  <div class="footer-content">
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Produto</h4>
+        <a href="/recursos">Recursos</a>
+        <a href="/planos">Planos</a>
+        <a href="/app">Aplicativo</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="/sobre">Sobre nós</a>
+        <a href="/contato">Contato</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacidade">Privacidade</a>
+        <a href="/termos">Termos</a>
+      </div>
+    </div>
+  </div>
+    <!-- Botão flutuante -->
+<a href="/cadastro" class="cta-flutuante" aria-label="Comece agora">
+  <i class="bi bi-plus-lg" aria-hidden="true"></i>
+  <span>Comece agora</span>
+</a>
+
+<a href="/inicio" class="cta-flutuante voltar" aria-label="Voltar para o início">
+  <i class="bi bi-arrow-left" aria-hidden="true"></i>
+  <span>Voltar ao Início</span>
+</a>
+</footer>
 @endsection

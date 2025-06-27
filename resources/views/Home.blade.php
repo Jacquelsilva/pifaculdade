@@ -1,132 +1,247 @@
-@extends('layouts.dash')
+@extends('layouts.dash', ['hideFooter' => true])
 
-@section('title', 'home')
+@section('title', 'Gerenciador Financeiro')
 
 @section('content')
-<div class="dashboard py-6">
-  <main class="main-content p-4">
-    <div class="content max-w-screen-xl mx-auto">
+<div class="container-home">
+  <h1>Gerenciador Financeiro</h1>
 
-      <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-[var(--texto)]">
-          Seja Bem-Vindo(a), {{ auth()->user()->nome_usuario }}!
-        </h2>
-      </div>
-
-  <main class="main-content">
-
-  <div style="display: flex; justify-content: flex-end; width: 100%; padding: 0px;">
-    <img src="{{ asset('img/boasvindanovo.jpg') }}" 
-         alt="Imagem de boas vindas" 
-         style="max-width: 800px; width: 100%; height: auto;">
-</div>
-      <section
-        id="cardsContainer"
-        class="
-          grid grid-cols-2 gap-4                   
-          sm:[grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] 
-          sm:gap-6  
-          flex flex-wrap justify-center gap-2     
-          sm:grid                                  
-  ">
-        <div class="card blue bg-[var(--primaria)] flex items-center justify-center aspect-square rounded-lg text-white font-bold">
-          STREAMING
-        </div>
-        <div class="card red bg-red-500 flex items-center justify-center aspect-square rounded-lg text-white font-bold">
-          CONSULTAS
-        </div>
-        <div
-          id="addCard"
-          class="card add bg-[var(--secundaria)] flex items-center justify-center aspect-square rounded-lg text-white font-bold
-     text-3xl">
-          +
-        </div>
-        <!-- …outros cards… -->
-      </section>
-
-
-
-    </div>
-  </main>
-</div>
-
-<!-- Modal para criar novo card -->
-<div id="createCardModal" class="modal hidden shadow-lg bg-[var(--bg)]">
-  <div class="text-[var(--texto)] rounded-lg p-6 max-w-md w-full mx-auto bg-white dark:bg-gray-800">
-    <h3 class="text-xl font-semibold mb-4">Criar Novo Card</h3>
-
-    <div class="mb-4 mt-6">
-      <label for="cardNameInput" class="block mb-1 text-lg">Nome do Card:</label>
-      <input
-        type="text"
-        id="cardNameInput"
-        placeholder="Digite o nome"
-        class="block w-full mt-4 bg-[var(--fundo)] text-[var(--texto)] border border-[var(--borda)] rounded-md py-2 px-3 placeholder:text-[var(--borda)] focus:outline-none focus:ring-2 focus:ring-[var(--primaria)] focus:border-[var(--primaria)] transition-colors duration-150" />
-    </div>
-
-    <div class="mb-6">
-      <label for="cardColorInput" class="block mb-1 text-lg">Cor:</label>
-      <input
-        type="color"
-        id="cardColorInput"
-        value="#6c5ce7"
-        class="h-10 w-16 p-1 mt-4 border border-[var(--borda)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primaria)] transition-colors duration-150" />
-    </div>
-
-    <div class="flex justify-end gap-2">
-      <button
-        id="cancelCreate"
-        class="text-[var(--texto)] bg-[var(--borda)] px-4 py-2 rounded-md border border-[var(--borda)] shadow-md hover:bg-[var(--borda)] transition-colors duration-150">
-        Cancelar
-      </button>
-      <button
-        id="createCardBtn"
-        class="bg-[var(--primaria)] text-[var(--texto-botao)] px-4 py-2 rounded-md border border-[var(--borda)] shadow-md hover:bg-[var(--secundaria)] transition-colors duration-150 bg-[var(--fundo)]">
-        Criar
-      </button>
+  <div class="card-container" id="cardContainer">
+    <div class="card add-card" onclick="abrirModal()">
+      <span class="plus">+</span>
+      <strong>Adicionar Novo Card</strong>
+      <small>Clique para criar</small>
     </div>
   </div>
-</div>
 
-<!-- Modal de visualização -->
-<div id="viewModal" class="modal hidden">
-  <div class="modal-content  p-6 rounded-lg max-w-md w-full mx-auto ">
-    <h3 class="text-xl font-semibold mb-4">Informações do Card</h3>
-    <div id="cardInfoView" class="mb-6"></div>
-    <div class="modal-buttons flex justify-end gap-2">
-      <button id="editCardBtn" class="px-4 py-2 bg-[var(--primaria)] text-[var(--texto-botao)] rounded-md">Editar</button>
-      <button id="closeViewBtn" class="px-4 py-2 bg-[var(--borda)] text-[var(--texto)] rounded-md">Fechar</button>
-    </div>
+  <div class="empty-state" id="emptyState">
+    <div class="icon">💲</div>
+    <h2>Nenhum card criado ainda</h2>
+    <p>Comece criando seu primeiro card financeiro</p>
+    <button onclick="abrirModal()">Criar Primeiro Card</button>
+  </div>
+
+  <div style="margin-top: 20px;">
+    <button class="save-btn" onclick="enviarParaBackend()">Enviar para o Banco</button>
   </div>
 </div>
+@endsection
 
-<!-- Modal de edição -->
-<div id="editModal" class="modal hidden">
-  <div class="modal-content bg-white p-6 rounded-lg max-w-lg w-full mx-auto" 
-       style="max-height: 80vh; display: flex; flex-direction: column; color:black">
+@section('modals')
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2 id="modalTitle">Novo Card</h2>
 
-    <h3 class="text-xl font-semibold mb-4">Editar Informações do Card</h3>
+    <label>Cor do Card</label>
+    <div class="colors" id="colorOptions">
+      <div class="color blue selected" data-color="#2979ff"></div>
+      <div class="color green" data-color="#00b894"></div>
+      <div class="color purple" data-color="#a29bfe"></div>
+      <div class="color pink" data-color="#d63031"></div>
+      <div class="color orange" data-color="#fd7e14"></div>
+      <div class="color teal" data-color="#00cec9"></div>
+    </div>
 
-    <form id="editCardForm" style="overflow-y: auto; ">
-      <label for="editCardDescription" class="block mb-1">Descrição:</label>
-      <textarea id="editCardDescription" placeholder="Digite uma descrição..." 
-        class="w-full mb-4 border border-gray-300 rounded px-3 py-2"></textarea>
+    <label for="desc">Descrição</label>
+    <textarea id="desc" placeholder="Digite uma descrição para este card..."></textarea>
 
-      <div id="infoContainer" class="mb-4"></div>
+    <label>Adicionar Mês e Valor</label>
+    <div class="month-value">
+      <select id="monthSelect">
+        <option value="">Selecione o mês...</option>
+        <option>Janeiro</option>
+        <option>Fevereiro</option>
+        <option>Março</option>
+        <option>Abril</option>
+        <option>Maio</option>
+        <option>Junho</option>
+        <option>Julho</option>
+        <option>Agosto</option>
+        <option>Setembro</option>
+        <option>Outubro</option>
+        <option>Novembro</option>
+        <option>Dezembro</option>
+      </select>
+      <input type="number" id="valueInput" placeholder="0,00" />
+    </div>
 
-      <button type="button" id="addInfoBtn" class="mb-4 px-3 py-1 rounded">+ Adicionar Mês e Valor</button>
-      <button type="button" id="addSubCardBtn" class="mb-4 px-3 py-1 rounded">+ Adicionar Subcategoria</button>
-
-      <div id="subCardContainer" class="mb-4"></div>
-
-      <p><strong>Total:</strong> R$ <span id="editTotalValue">0,00</span></p>
-    </form>
-
-    <div class="modal-buttons flex justify-end gap-2 mt-4"
-         style="position: sticky; bottom: 0; padding-top: 12px; border-top: 1px solid #ccc; z-index: 10;">
-      <button type="button" id="saveEditBtn" class="px-4 py-2 rounded-md">Salvar</button>
-      <button type="button" id="cancelEditBtn" class="px-4 py-2 rounded-md">Cancelar</button>
+    <div class="buttons">
+      <button class="cancel-btn" onclick="fecharModal()">Cancelar</button>
+      <button class="save-btn" onclick="salvarCard()">Salvar</button>
     </div>
   </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+  const cardContainer = document.getElementById('cardContainer');
+  const emptyState = document.getElementById('emptyState');
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+
+  let selectedColor = '#2979ff';
+  let cardsData = [];
+  let editIndex = null;
+
+  document.querySelectorAll('.color').forEach(color => {
+    color.addEventListener('click', () => {
+      document.querySelectorAll('.color').forEach(c => c.classList.remove('selected'));
+      color.classList.add('selected');
+      selectedColor = color.dataset.color;
+    });
+  });
+
+  function abrirModal() {
+    modalOverlay.style.display = 'flex';
+    modalTitle.textContent = editIndex !== null ? 'Editar Card' : 'Novo Card';
+  }
+
+  function fecharModal() {
+    modalOverlay.style.display = 'none';
+    limparModal();
+  }
+
+  function limparModal() {
+    document.getElementById('desc').value = '';
+    document.getElementById('monthSelect').value = '';
+    document.getElementById('valueInput').value = '';
+    editIndex = null;
+  }
+
+  function salvarCard() {
+    const desc = document.getElementById('desc').value.trim();
+    const month = document.getElementById('monthSelect').value;
+    const value = document.getElementById('valueInput').value;
+
+    if (!desc || !month || !value) {
+      alert('Preencha todos os campos!');
+      return;
+    }
+
+    const entrada = { mes: month, valor: parseFloat(value).toFixed(2) };
+
+    if (editIndex !== null) {
+      cardsData[editIndex].entradas.push(entrada);
+    } else {
+      cardsData.push({
+        descricao: desc,
+        color: selectedColor,
+        entradas: [entrada]
+      });
+    }
+
+    renderCards();
+    fecharModal();
+  }
+
+  function editarCard(index) {
+    const card = cardsData[index];
+    document.getElementById('desc').value = card.descricao;
+    selectedColor = card.color;
+    editIndex = index;
+
+    document.querySelectorAll('.color').forEach(c => {
+      c.classList.toggle('selected', c.dataset.color === selectedColor);
+    });
+
+    abrirModal();
+  }
+
+  function removerCard(index) {
+    cardsData.splice(index, 1);
+    renderCards();
+  }
+
+  function renderCards() {
+    const cards = cardContainer.querySelectorAll('.card:not(.add-card)');
+    cards.forEach(card => card.remove());
+
+    cardsData.forEach((card, index) => {
+      const cardDiv = document.createElement('div');
+      cardDiv.className = 'card';
+      cardDiv.setAttribute('style', `
+        background-color: ${card.color};
+        width: 160px;
+        height: auto;
+        border-radius: 10px;
+        padding: 10px;
+        color: #fff;
+        margin-bottom: 10px;
+        text-align: center;
+      `);
+
+      let entradasHTML = '';
+      let total = 0;
+
+      card.entradas.forEach(entrada => {
+        entradasHTML += `<p><strong>${entrada.mes}:</strong> R$ ${entrada.valor}</p>`;
+        total += parseFloat(entrada.valor);
+      });
+
+      entradasHTML += `<hr><p><strong>Total:</strong> R$ ${total.toFixed(2)}</p>`;
+
+      cardDiv.innerHTML = `
+        <h3 style="margin: 0;">${card.descricao}</h3>
+        ${entradasHTML}
+        <button onclick="editarCard(${index})" style="padding: 5px 8px; margin-top: 6px;">Editar</button>
+        <button onclick="removerCard(${index})" style="padding: 5px 8px; margin-top: 6px;">Remover</button>
+      `;
+
+      const addCard = cardContainer.querySelector('.add-card');
+      cardContainer.insertBefore(cardDiv, addCard);
+    });
+
+    emptyState.style.display = cardsData.length === 0 ? 'block' : 'none';
+  }
+
+  async function enviarParaBackend() {
+    if (cardsData.length === 0) {
+      alert('Nenhum card para enviar.');
+      return;
+    }
+
+    try {
+      const response = await fetch('/cards-lote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ cards: cardsData })
+      });
+
+      if (!response.ok) throw new Error('Erro ao salvar os dados no servidor.');
+      alert('Cards salvos com sucesso!');
+    } catch (error) {
+      console.error(error);
+      alert('Erro ao enviar dados para o servidor.');
+    }
+  }
+
+  // 🔄 CARREGA OS CARDS SALVOS QUANDO A TELA ABRIR
+  async function fetchCardsSalvos() {
+    try {
+      const response = await fetch('/cards');
+      if (!response.ok) throw new Error('Erro ao buscar os cards');
+      const data = await response.json();
+
+      cardsData = data.map(card => ({
+        descricao: card.descricao,
+        color: card.color,
+        entradas: card.entradas.map(e => ({
+          mes: e.mes,
+          valor: parseFloat(e.valor).toFixed(2)
+        }))
+      }));
+
+      renderCards();
+    } catch (err) {
+      console.error('Erro ao carregar cards:', err);
+    }
+  }
+
+  // 🚀 Inicia carregamento automático
+  window.onload = fetchCardsSalvos;
+</script>
+@endpush
