@@ -1,4 +1,4 @@
-<p align="center" font weight="bold">Banco de Dados do Recora</p>
+<p align="center"><b>Banco de Dados do Recora</b></p>
 <div align="justify">
 
 O banco de dados foi criado por meio do mySQL. Primeiro, para que o site consiga armazenar o cadastro de usuários, fizemos a tabela de usuários. Então, foi feita a tabela de categorias, que será responsável por armazenar as categorias que o usuário queira criar. Como cada usuário cria uma categoria diferente, as duas tabelas estão conectadas.
