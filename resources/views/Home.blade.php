@@ -4,7 +4,10 @@
 
 @section('content')
 <div class="container-home">
+  
   <h1>Gerenciador Financeiro</h1>
+<p class="nome" style="color: black !important;">Bem-vindo, {{ auth()->user()->nome_usuario }}!</p>
+
 
   <div class="card-container" id="cardContainer">
     <div class="card add-card" onclick="abrirModal()">
