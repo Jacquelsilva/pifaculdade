@@ -27,11 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-/* FAC */
 
 
 
-
-/*cards*/
 
 
