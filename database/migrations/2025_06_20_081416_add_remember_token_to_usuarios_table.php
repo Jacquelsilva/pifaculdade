@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            // adiciona a coluna remember_token (padrão Laravel)
+            
             $table->string('remember_token', 100)->nullable()->after('senha');
         });
     }

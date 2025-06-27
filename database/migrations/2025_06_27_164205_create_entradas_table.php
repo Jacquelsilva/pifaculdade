@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('entradas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('card_id')->constrained('cards')->onDelete('cascade');
-            $table->string('mes'); // Ex: Janeiro, Fevereiro
+            $table->string('mes'); 
             $table->decimal('valor', 10, 2);
             $table->timestamps();
         });

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('assinaturas', function (Blueprint $table) {
-            // cria id_assinaturas como BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+            
             $table->id('id_assinaturas');
 
             $table->string('plataforma', 50);
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('status_assinatura', 8);
             $table->string('plano_assinatura', 10);
 
-            // cria id_categoria como BIGINT UNSIGNED NULLABLE
+            
             $table->foreignId('id_categoria')
                 ->nullable()
                 ->constrained('categoria', 'id_categoria')

@@ -18,14 +18,14 @@ class UserFactory extends Factory
     protected $model = \App\Models\User::class;
 
     /**
-     * Define the model's default state.
+     
      *
      * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            // Gerando um CPF aleatório de 11 dígitos
+            
             'cpf'             => $this->faker->unique()->numerify('###########'),
             'nome_usuario'    => $this->faker->name(),
             'data_nascimento' => $this->faker->date('Y-m-d', '2005-01-01'),

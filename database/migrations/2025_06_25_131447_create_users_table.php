@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('usuarios', function (Blueprint $table) {
-            $table->string('cpf')->primary(); // chave primária manual
+            $table->string('cpf')->primary(); 
             $table->string('nome_usuario');
             $table->date('data_nascimento');
             $table->string('email_usuario')->unique();
