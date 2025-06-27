@@ -53,17 +53,6 @@
       </li>
     </ul>
   </div>
-  <!-- Botão flutuante -->
-
-<a href="/cadastro" class="cta-flutuante" aria-label="Comece agora">
-  <i class="bi bi-plus-lg" aria-hidden="true"></i>
-  <span>Comece agora</span>
-</a>
-
-<a href="/inicio" class="cta-flutuante voltar" aria-label="Voltar para o início">
-  <i class="bi bi-arrow-left" aria-hidden="true"></i>
-  <span>Voltar ao Início</span>
-</a>
 
 @endsection 
 
