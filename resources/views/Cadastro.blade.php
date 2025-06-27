@@ -11,7 +11,25 @@
     </a>
 
     <h1>Criar Conta</h1>
-    
+
+    {{-- Exibir mensagens de erro --}}
+    @if ($errors->any())
+      <div style="color: red; margin-bottom: 15px;">
+        <ul>
+          @foreach ($errors->all() as $erro)
+            <li>{{ $erro }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
+    {{-- Mensagem de sucesso --}}
+    @if (session('success'))
+      <div style="color: green; margin-bottom: 15px;">
+        {{ session('success') }}
+      </div>
+    @endif
+
     <form action="{{ route('cadastro.store') }}" method="POST">
       @csrf
 
